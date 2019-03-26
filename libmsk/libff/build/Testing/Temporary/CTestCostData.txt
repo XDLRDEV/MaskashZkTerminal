@@ -1,0 +1,4 @@
+algebra_bilinearity_test 1 0.12894
+algebra_groups_test 1 11.4934
+algebra_fields_test 1 0.45573
+---

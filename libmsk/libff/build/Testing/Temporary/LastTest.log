@@ -1,0 +1,751 @@
+Start testing: Jun 07 12:31 CST
+----------------------------------------------------------
+1/3 Testing: algebra_bilinearity_test
+1/3 Test: algebra_bilinearity_test
+Command: "/home/yuncong/Projects/libff/build/src/algebra_bilinearity_test"
+Directory: /home/yuncong/Projects/libff/build/src
+"algebra_bilinearity_test" start time: Jun 07 12:31 CST
+Output:
+----------------------------------------------------------
+Reset time counters for profiling
+Running bilinearity tests:
+P:
+(5783185489861514369191037491547447959394691221442695952 , 3729300790854170818416921625384771042385958921329993125)
+(6194706946798932659421128387382611940678001913952973188 : 3744245702660162755252758343050406452669375199771446062 : 1192159783954581793635338982878300563509304515392220758)
+Q:
+(5381062880345414059736933396319269372413253656643826866*z^2 + 6171876017053731416059890076261894954546709516096778794*z + 6076584368353609038319552379239061702442435826106460266 , 695881927194735157761581026018257054066521690544047214*z^2 + 1622767543013173383165356517405551089422874497350943724*z + 6128357408264993986695189037878788387655667565022427545)
+(3648908882261343908512857268646562297711772393344570622*z^2 + 1530815714155399773280344636924120077576697576969722921*z + 4667497273763306802423673831372483375352134411054598508 : 2086821480793851630067349031837818616245432890087485158*z^2 + 3167992195925719915195802014868468133226604753847723044*z + 5995133046136023522012004966790844509155143787938032353 : 2095265587507081807967185004645473629423839379067214901*z^2 + 3557944504761564169442616152697952240227953834050103757*z + 2218197645699748141804874523672125221749189584707418770)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to edwards_ate_reduced_pairing	[             ]	(0.0021s x0.90 from start)
+  (enter) Call to edwards_ate_pairing        	[             ]	(0.0021s x0.90 from start)
+    (enter) Call to edwards_ate_precompute_G1  	[             ]	(0.0021s x0.90 from start)
+    (leave) Call to edwards_ate_precompute_G1  	[0.0000s x0.97]	(0.0021s x0.90 from start)
+    (enter) Call to edwards_ate_precompute_G2  	[             ]	(0.0021s x0.90 from start)
+    (leave) Call to edwards_ate_precompute_G2  	[0.0005s x1.00]	(0.0027s x0.92 from start)
+    (enter) Call to edwards_ate_miller_loop    	[             ]	(0.0027s x0.92 from start)
+    (leave) Call to edwards_ate_miller_loop    	[0.0003s x1.00]	(0.0030s x0.93 from start)
+  (leave) Call to edwards_ate_pairing        	[0.0008s x1.00]	(0.0030s x0.93 from start)
+  (enter) Call to edwards_final_exponentiation	[             ]	(0.0030s x0.93 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0030s x0.93 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.06]	(0.0030s x0.93 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0030s x0.93 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.06]	(0.0030s x0.93 from start)
+    (enter) Call to edwards_final_exponentiation_last_chunk	[             ]	(0.0030s x0.93 from start)
+    (leave) Call to edwards_final_exponentiation_last_chunk	[0.0001s x1.00]	(0.0031s x0.93 from start)
+  (leave) Call to edwards_final_exponentiation	[0.0001s x1.00]	(0.0031s x0.93 from start)
+(leave) Call to edwards_ate_reduced_pairing	[0.0010s x1.00]	(0.0031s x0.93 from start)
+(enter) Call to edwards_ate_reduced_pairing	[             ]	(0.0031s x0.93 from start)
+  (enter) Call to edwards_ate_pairing        	[             ]	(0.0031s x0.93 from start)
+    (enter) Call to edwards_ate_precompute_G1  	[             ]	(0.0031s x0.93 from start)
+    (leave) Call to edwards_ate_precompute_G1  	[0.0000s x1.09]	(0.0031s x0.93 from start)
+    (enter) Call to edwards_ate_precompute_G2  	[             ]	(0.0031s x0.93 from start)
+    (leave) Call to edwards_ate_precompute_G2  	[0.0005s x1.00]	(0.0036s x0.94 from start)
+    (enter) Call to edwards_ate_miller_loop    	[             ]	(0.0036s x0.94 from start)
+    (leave) Call to edwards_ate_miller_loop    	[0.0003s x1.00]	(0.0040s x0.94 from start)
+  (leave) Call to edwards_ate_pairing        	[0.0009s x1.00]	(0.0040s x0.95 from start)
+  (enter) Call to edwards_final_exponentiation	[             ]	(0.0040s x0.95 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0040s x0.95 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.08]	(0.0040s x0.95 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0040s x0.95 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.04]	(0.0040s x0.95 from start)
+    (enter) Call to edwards_final_exponentiation_last_chunk	[             ]	(0.0040s x0.95 from start)
+    (leave) Call to edwards_final_exponentiation_last_chunk	[0.0001s x1.00]	(0.0041s x0.95 from start)
+  (leave) Call to edwards_final_exponentiation	[0.0001s x1.00]	(0.0041s x0.95 from start)
+(leave) Call to edwards_ate_reduced_pairing	[0.0010s x1.00]	(0.0041s x0.95 from start)
+(enter) Call to edwards_ate_reduced_pairing	[             ]	(0.0041s x0.95 from start)
+  (enter) Call to edwards_ate_pairing        	[             ]	(0.0041s x0.95 from start)
+    (enter) Call to edwards_ate_precompute_G1  	[             ]	(0.0041s x0.95 from start)
+    (leave) Call to edwards_ate_precompute_G1  	[0.0000s x1.06]	(0.0041s x0.95 from start)
+    (enter) Call to edwards_ate_precompute_G2  	[             ]	(0.0041s x0.95 from start)
+    (leave) Call to edwards_ate_precompute_G2  	[0.0005s x1.00]	(0.0046s x0.95 from start)
+    (enter) Call to edwards_ate_miller_loop    	[             ]	(0.0046s x0.95 from start)
+    (leave) Call to edwards_ate_miller_loop    	[0.0003s x1.00]	(0.0049s x0.96 from start)
+  (leave) Call to edwards_ate_pairing        	[0.0008s x1.00]	(0.0049s x0.96 from start)
+  (enter) Call to edwards_final_exponentiation	[             ]	(0.0049s x0.96 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0049s x0.96 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.07]	(0.0049s x0.96 from start)
+    (enter) Call to edwards_final_exponentiation_first_chunk	[             ]	(0.0049s x0.96 from start)
+    (leave) Call to edwards_final_exponentiation_first_chunk	[0.0000s x1.03]	(0.0049s x0.96 from start)
+    (enter) Call to edwards_final_exponentiation_last_chunk	[             ]	(0.0049s x0.96 from start)
+    (leave) Call to edwards_final_exponentiation_last_chunk	[0.0001s x1.00]	(0.0050s x0.96 from start)
+  (leave) Call to edwards_final_exponentiation	[0.0001s x1.00]	(0.0050s x0.96 from start)
+(leave) Call to edwards_ate_reduced_pairing	[0.0009s x1.00]	(0.0050s x0.96 from start)
+c0/c1:
+c0/c1/c2:
+4714957130882213970966251548333093004279562737429197657
+3030887277776299527111094666820159735990987390014064672
+3052025802296150068476570404850138593518109643966823427
+c0/c1/c2:
+5591189381865836311103894053885289555583766873816505059
+4021386755161595867486663939373694029707854087656418901
+3718886929437493044519302771786929940006285065756654437
+c0/c1:
+c0/c1/c2:
+4714957130882213970966251548333093004279562737429197657
+3030887277776299527111094666820159735990987390014064672
+3052025802296150068476570404850138593518109643966823427
+c0/c1/c2:
+5591189381865836311103894053885289555583766873816505059
+4021386755161595867486663939373694029707854087656418901
+3718886929437493044519302771786929940006285065756654437
+c0/c1:
+c0/c1/c2:
+4714957130882213970966251548333093004279562737429197657
+3030887277776299527111094666820159735990987390014064672
+3052025802296150068476570404850138593518109643966823427
+c0/c1/c2:
+5591189381865836311103894053885289555583766873816505059
+4021386755161595867486663939373694029707854087656418901
+3718886929437493044519302771786929940006285065756654437
+
+
+(enter) Call to edwards_ate_precompute_G1  	[             ]	(0.0074s x0.97 from start)
+(leave) Call to edwards_ate_precompute_G1  	[0.0000s x1.03]	(0.0074s x0.97 from start)
+(enter) Call to edwards_ate_precompute_G1  	[             ]	(0.0074s x0.97 from start)
+(leave) Call to edwards_ate_precompute_G1  	[0.0000s x1.02]	(0.0074s x0.97 from start)
+(enter) Call to edwards_ate_precompute_G2  	[             ]	(0.0074s x0.97 from start)
+(leave) Call to edwards_ate_precompute_G2  	[0.0006s x1.00]	(0.0080s x0.97 from start)
+(enter) Call to edwards_ate_precompute_G2  	[             ]	(0.0080s x0.97 from start)
+(leave) Call to edwards_ate_precompute_G2  	[0.0005s x1.00]	(0.0085s x0.97 from start)
+(enter) Call to edwards_ate_miller_loop    	[             ]	(0.0085s x0.97 from start)
+(leave) Call to edwards_ate_miller_loop    	[0.0003s x1.00]	(0.0088s x0.98 from start)
+(enter) Call to edwards_ate_miller_loop    	[             ]	(0.0088s x0.98 from start)
+(leave) Call to edwards_ate_miller_loop    	[0.0003s x1.00]	(0.0091s x0.98 from start)
+(enter) Call to edwards_ate_double_miller_loop	[             ]	(0.0091s x0.98 from start)
+(leave) Call to edwards_ate_double_miller_loop	[0.0004s x1.00]	(0.0095s x0.98 from start)
+Running bilinearity tests:
+P:
+(462446944386803625838614347199316316877436252856440981804851007069960582903303441497694314 , 187009768901294457040413951697625065552811445998413484271969324527623689049017483575233298)
+(245690605097821561460420236751700467618272220362576471241313732024724314010772233704605771 : 109380447638400195658433227102577049275129893782154001107621858291260652432107556178379233 : 63116359962096277512318649353052356855582148213821595394835076533212530226476100205855166)
+Q:
+(451129426910878702927472771460019001558746792314493885355995726053784861012178792121036918*z^2 + 386434482392625791974755479285401676826732465054225859111381202756200175227592784413859712*z + 68046239400312020197428959097707719737032394505066218263230209335437060828541135307571182 , 94152750166278719008652987470807870659679720401550339353679118029680160008967569487907997*z^2 + 270644244213527426856081648802113833448387948096657643517566536047168809481266388931662039*z + 459511376332385932463104482584726943910223932056225408680320762528099755997405820058373461)
+(423181177798103100678958338889040602524859336595325879050214350124010405156125229318119796*z^2 + 138551796246149390449910828112371745703390624517845261726957695105239851460561505416587148*z + 179170615062843301989955346865241100834202808421194556494977023577654894924054749064127347 : 191041057294174472838811741404192314136268782558895638425149356689041005691310993000510961*z^2 + 420353394984143585921120063650841393975453736752194175172686832403466197664994249379769980*z + 298902611772265816345913247670031244983371047779456018460472968081806131722373429603675156 : 13472424553209252280018562851922382738482450423420687287670815762079777368078474713027017*z^2 + 451692481179379473703947700905516063938991036340872254001426002105825293892829204958252611*z + 359593523847591075007736948011174567102200790427248514513519926569412082232388557091979798)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to mnt6_ate_reduced_pairing   	[             ]	(0.0191s x0.92 from start)
+  (enter) Call to mnt6_ate_pairing           	[             ]	(0.0191s x0.92 from start)
+    (enter) Call to mnt6_ate_precompute_G1     	[             ]	(0.0191s x0.92 from start)
+    (leave) Call to mnt6_ate_precompute_G1     	[0.0000s x1.11]	(0.0191s x0.92 from start)
+    (enter) Call to mnt6_ate_precompute_G2     	[             ]	(0.0191s x0.92 from start)
+    (leave) Call to mnt6_ate_precompute_G2     	[0.0022s x1.00]	(0.0213s x0.93 from start)
+    (enter) Call to mnt6_ate_miller_loop       	[             ]	(0.0213s x0.93 from start)
+    (leave) Call to mnt6_ate_miller_loop       	[0.0011s x1.00]	(0.0224s x0.93 from start)
+  (leave) Call to mnt6_ate_pairing           	[0.0033s x1.00]	(0.0224s x0.93 from start)
+  (enter) Call to mnt6_final_exponentiation  	[             ]	(0.0224s x0.93 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0224s x0.93 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.05]	(0.0224s x0.93 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0224s x0.93 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.03]	(0.0225s x0.93 from start)
+    (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0225s x0.93 from start)
+    (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0228s x0.93 from start)
+  (leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0228s x0.93 from start)
+(leave) Call to mnt6_ate_reduced_pairing   	[0.0037s x1.00]	(0.0228s x0.93 from start)
+(enter) Call to mnt6_ate_reduced_pairing   	[             ]	(0.0228s x0.93 from start)
+  (enter) Call to mnt6_ate_pairing           	[             ]	(0.0228s x0.93 from start)
+    (enter) Call to mnt6_ate_precompute_G1     	[             ]	(0.0228s x0.93 from start)
+    (leave) Call to mnt6_ate_precompute_G1     	[0.0000s x1.07]	(0.0228s x0.93 from start)
+    (enter) Call to mnt6_ate_precompute_G2     	[             ]	(0.0228s x0.93 from start)
+    (leave) Call to mnt6_ate_precompute_G2     	[0.0022s x1.00]	(0.0249s x0.94 from start)
+    (enter) Call to mnt6_ate_miller_loop       	[             ]	(0.0249s x0.94 from start)
+    (leave) Call to mnt6_ate_miller_loop       	[0.0011s x1.00]	(0.0261s x0.94 from start)
+  (leave) Call to mnt6_ate_pairing           	[0.0033s x1.00]	(0.0261s x0.94 from start)
+  (enter) Call to mnt6_final_exponentiation  	[             ]	(0.0261s x0.94 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0261s x0.94 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.05]	(0.0261s x0.94 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0261s x0.94 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.0261s x0.94 from start)
+    (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0261s x0.94 from start)
+    (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0264s x0.94 from start)
+  (leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0264s x0.94 from start)
+(leave) Call to mnt6_ate_reduced_pairing   	[0.0037s x1.00]	(0.0264s x0.94 from start)
+(enter) Call to mnt6_ate_reduced_pairing   	[             ]	(0.0264s x0.94 from start)
+  (enter) Call to mnt6_ate_pairing           	[             ]	(0.0264s x0.94 from start)
+    (enter) Call to mnt6_ate_precompute_G1     	[             ]	(0.0264s x0.94 from start)
+    (leave) Call to mnt6_ate_precompute_G1     	[0.0000s x1.05]	(0.0264s x0.94 from start)
+    (enter) Call to mnt6_ate_precompute_G2     	[             ]	(0.0264s x0.94 from start)
+    (leave) Call to mnt6_ate_precompute_G2     	[0.0021s x1.00]	(0.0286s x0.95 from start)
+    (enter) Call to mnt6_ate_miller_loop       	[             ]	(0.0286s x0.95 from start)
+    (leave) Call to mnt6_ate_miller_loop       	[0.0011s x1.00]	(0.0297s x0.95 from start)
+  (leave) Call to mnt6_ate_pairing           	[0.0033s x1.00]	(0.0297s x0.95 from start)
+  (enter) Call to mnt6_final_exponentiation  	[             ]	(0.0297s x0.95 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0297s x0.95 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.05]	(0.0297s x0.95 from start)
+    (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0297s x0.95 from start)
+    (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.0297s x0.95 from start)
+    (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0297s x0.95 from start)
+    (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0300s x0.95 from start)
+  (leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0300s x0.95 from start)
+(leave) Call to mnt6_ate_reduced_pairing   	[0.0036s x1.00]	(0.0300s x0.95 from start)
+c0/c1:
+c0/c1/c2:
+438949773757212058352106221851190669438751610974271598234747232432676361154456718495331783
+177413271739216003628184491546599913158667213586767106786709873963220188639506435821398478
+48793670164571274255791140305657960737468615532824392799462781865293919589825933886958852
+c0/c1/c2:
+356634882310109441978484638781901158212082729591809810497508989996551999826469093649613413
+212569729366521276971279350756173470176411339390459962447041538378321907219285221690911902
+308275458658309966072337211576465361038495310053691163429046344584904075214613771272402938
+c0/c1:
+c0/c1/c2:
+438949773757212058352106221851190669438751610974271598234747232432676361154456718495331783
+177413271739216003628184491546599913158667213586767106786709873963220188639506435821398478
+48793670164571274255791140305657960737468615532824392799462781865293919589825933886958852
+c0/c1/c2:
+356634882310109441978484638781901158212082729591809810497508989996551999826469093649613413
+212569729366521276971279350756173470176411339390459962447041538378321907219285221690911902
+308275458658309966072337211576465361038495310053691163429046344584904075214613771272402938
+c0/c1:
+c0/c1/c2:
+438949773757212058352106221851190669438751610974271598234747232432676361154456718495331783
+177413271739216003628184491546599913158667213586767106786709873963220188639506435821398478
+48793670164571274255791140305657960737468615532824392799462781865293919589825933886958852
+c0/c1/c2:
+356634882310109441978484638781901158212082729591809810497508989996551999826469093649613413
+212569729366521276971279350756173470176411339390459962447041538378321907219285221690911902
+308275458658309966072337211576465361038495310053691163429046344584904075214613771272402938
+
+
+(enter) Call to mnt6_ate_precompute_G1     	[             ]	(0.0402s x0.96 from start)
+(leave) Call to mnt6_ate_precompute_G1     	[0.0000s x1.04]	(0.0402s x0.96 from start)
+(enter) Call to mnt6_ate_precompute_G1     	[             ]	(0.0402s x0.96 from start)
+(leave) Call to mnt6_ate_precompute_G1     	[0.0000s x1.03]	(0.0402s x0.96 from start)
+(enter) Call to mnt6_ate_precompute_G2     	[             ]	(0.0402s x0.96 from start)
+(leave) Call to mnt6_ate_precompute_G2     	[0.0020s x0.99]	(0.0422s x0.96 from start)
+(enter) Call to mnt6_ate_precompute_G2     	[             ]	(0.0422s x0.96 from start)
+(leave) Call to mnt6_ate_precompute_G2     	[0.0020s x1.00]	(0.0443s x0.97 from start)
+(enter) Call to mnt6_ate_miller_loop       	[             ]	(0.0443s x0.97 from start)
+(leave) Call to mnt6_ate_miller_loop       	[0.0011s x1.00]	(0.0454s x0.97 from start)
+(enter) Call to mnt6_ate_miller_loop       	[             ]	(0.0454s x0.97 from start)
+(leave) Call to mnt6_ate_miller_loop       	[0.0011s x1.00]	(0.0465s x0.97 from start)
+(enter) Call to mnt6_ate_double_miller_loop	[             ]	(0.0465s x0.97 from start)
+(leave) Call to mnt6_ate_double_miller_loop	[0.0020s x1.00]	(0.0485s x0.97 from start)
+Running bilinearity tests:
+P:
+(327717372148133217110802336193067976314372038651075131222393685571104205166059620576247470 , 65000302421376069579207972285005033716555198779371634985167603472444018177225097062642643)
+Q:
+(359126779876058943565996539404057250643887881038884162903239730040173555690670147466241067*z^2 + 54309328357479666078541298149435809578531609734405276680381125759765238470550578460582280*z + 78951582095512720244625835959731820844488711415030373939509336889870721519095928101634240 , 238898883526407050286681133688516936417937525285851972758901820151972295787371830232496304*z^2 + 48407618225533933627951359456895089306823108556227286831075098063959133011303163253871141*z + 267264751443998022062529016766892997181778312161555946902317477447936802668311775310281812)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to mnt6_affine_ate_precompute_G1	[             ]	(0.0565s x0.97 from start)
+(leave) Call to mnt6_affine_ate_precompute_G1	[0.0000s x1.05]	(0.0565s x0.97 from start)
+(enter) Call to mnt6_affine_ate_precompute_G2	[             ]	(0.0565s x0.97 from start)
+(leave) Call to mnt6_affine_ate_precompute_G2	[0.0015s x1.00]	(0.0580s x0.97 from start)
+(enter) Call to mnt6_affine_ate_miller_loop	[             ]	(0.0580s x0.97 from start)
+(leave) Call to mnt6_affine_ate_miller_loop	[0.0007s x1.00]	(0.0587s x0.97 from start)
+(enter) Call to mnt6_final_exponentiation  	[             ]	(0.0587s x0.97 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0587s x0.97 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.06]	(0.0587s x0.97 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0587s x0.97 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.03]	(0.0587s x0.97 from start)
+  (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0587s x0.97 from start)
+  (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0591s x0.97 from start)
+(leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0591s x0.97 from start)
+(enter) Call to mnt6_affine_ate_precompute_G1	[             ]	(0.0591s x0.97 from start)
+(leave) Call to mnt6_affine_ate_precompute_G1	[0.0000s x1.07]	(0.0591s x0.97 from start)
+(enter) Call to mnt6_affine_ate_precompute_G2	[             ]	(0.0591s x0.97 from start)
+(leave) Call to mnt6_affine_ate_precompute_G2	[0.0015s x1.00]	(0.0606s x0.97 from start)
+(enter) Call to mnt6_affine_ate_miller_loop	[             ]	(0.0606s x0.97 from start)
+(leave) Call to mnt6_affine_ate_miller_loop	[0.0007s x1.00]	(0.0613s x0.98 from start)
+(enter) Call to mnt6_final_exponentiation  	[             ]	(0.0613s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0613s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.06]	(0.0613s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0614s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.03]	(0.0614s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0614s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0617s x0.98 from start)
+(leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0617s x0.98 from start)
+(enter) Call to mnt6_affine_ate_precompute_G1	[             ]	(0.0617s x0.98 from start)
+(leave) Call to mnt6_affine_ate_precompute_G1	[0.0000s x1.07]	(0.0617s x0.98 from start)
+(enter) Call to mnt6_affine_ate_precompute_G2	[             ]	(0.0617s x0.98 from start)
+(leave) Call to mnt6_affine_ate_precompute_G2	[0.0015s x1.00]	(0.0632s x0.98 from start)
+(enter) Call to mnt6_affine_ate_miller_loop	[             ]	(0.0632s x0.98 from start)
+(leave) Call to mnt6_affine_ate_miller_loop	[0.0007s x1.00]	(0.0639s x0.98 from start)
+(enter) Call to mnt6_final_exponentiation  	[             ]	(0.0639s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0639s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.05]	(0.0639s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_first_chunk	[             ]	(0.0639s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.0639s x0.98 from start)
+  (enter) Call to mnt6_final_exponentiation_last_chunk	[             ]	(0.0639s x0.98 from start)
+  (leave) Call to mnt6_final_exponentiation_last_chunk	[0.0003s x1.00]	(0.0642s x0.98 from start)
+(leave) Call to mnt6_final_exponentiation  	[0.0003s x1.00]	(0.0642s x0.98 from start)
+c0/c1:
+c0/c1/c2:
+39483028310907877232190871523150462084881313571311439161418530090642022144413427984238124
+61798862977883114882581486712797355305776802443851741058314945057142409692970226322959227
+332508734062248018362810206038493378517855903907344483845374621752493029210178587221527051
+c0/c1/c2:
+132808114035939714731448794587079313957962763656097649647257895884411312687787698489824084
+59925025553773805007444988638713044171447227149082169824801189982915554361780660983500617
+105270350702760220699596532261371541965572044273288556385544815057432130021906077873359114
+c0/c1:
+c0/c1/c2:
+39483028310907877232190871523150462084881313571311439161418530090642022144413427984238124
+61798862977883114882581486712797355305776802443851741058314945057142409692970226322959227
+332508734062248018362810206038493378517855903907344483845374621752493029210178587221527051
+c0/c1/c2:
+132808114035939714731448794587079313957962763656097649647257895884411312687787698489824084
+59925025553773805007444988638713044171447227149082169824801189982915554361780660983500617
+105270350702760220699596532261371541965572044273288556385544815057432130021906077873359114
+c0/c1:
+c0/c1/c2:
+39483028310907877232190871523150462084881313571311439161418530090642022144413427984238124
+61798862977883114882581486712797355305776802443851741058314945057142409692970226322959227
+332508734062248018362810206038493378517855903907344483845374621752493029210178587221527051
+c0/c1/c2:
+132808114035939714731448794587079313957962763656097649647257895884411312687787698489824084
+59925025553773805007444988638713044171447227149082169824801189982915554361780660983500617
+105270350702760220699596532261371541965572044273288556385544815057432130021906077873359114
+
+
+Running bilinearity tests:
+P:
+(335576286928999340301620453748294732140861921299944140748275965424048371804638780713714945 , 204547130326890217179682348586671600601983097210453966291226596464991949339521035358180644)
+(127276118785066097679322526614825806840011166538971034049285696005114868753060939018286346 : 193464678320453665884451211450497431155070993100693579684720036586952107282226731842233144 : 177301802050041362155980703689189041961303660261480199661469577534093282350062221745533887)
+Q:
+(253502711005177586903058105840696023392958977222518640218315678894333547893460088037853419*z + 342696136370362883842306883093735854615316725645208575617235511795257493563868569499060984 , 354985865076912393125063772043468793640014591002630808699063325558245332061977913662002792*z + 359056750007953762442785661987846119486102379586273021289523518902909685964865443500803085)
+(346131330764614353382278432756479346000454802162466642530628644048892124281584559251043531*z + 228273218512384697104197905931665642971606170018416334392911476877939613384314737634365491 : 192566737291718130292537648695629296451187810635330223950909220971564176407774045573231718*z + 164526781287671548897276244993851269826793521899880579189093529406666696005323719636895790 : 206269155755349566549717130533592202770949333943849634225866761278278347348695822840202535*z + 412473464725358365531492540599245230745739832730983812573298564473377295452931436233170918)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to mnt4_ate_reduced_pairing   	[             ]	(0.0709s x0.98 from start)
+  (enter) Call to mnt4_ate_pairing           	[             ]	(0.0709s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G1     	[             ]	(0.0709s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G1     	[0.0000s x1.15]	(0.0709s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G2     	[             ]	(0.0709s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G2     	[0.0011s x1.00]	(0.0720s x0.98 from start)
+    (enter) Call to mnt4_ate_miller_loop       	[             ]	(0.0720s x0.98 from start)
+    (leave) Call to mnt4_ate_miller_loop       	[0.0006s x1.00]	(0.0726s x0.98 from start)
+  (leave) Call to mnt4_ate_pairing           	[0.0017s x1.00]	(0.0726s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation  	[             ]	(0.0726s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0726s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.12]	(0.0726s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0726s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.10]	(0.0726s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0726s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0728s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0728s x0.98 from start)
+(leave) Call to mnt4_ate_reduced_pairing   	[0.0019s x1.00]	(0.0728s x0.98 from start)
+(enter) Call to mnt4_ate_reduced_pairing   	[             ]	(0.0728s x0.98 from start)
+  (enter) Call to mnt4_ate_pairing           	[             ]	(0.0728s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G1     	[             ]	(0.0728s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G1     	[0.0000s x1.09]	(0.0728s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G2     	[             ]	(0.0728s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G2     	[0.0011s x1.00]	(0.0739s x0.98 from start)
+    (enter) Call to mnt4_ate_miller_loop       	[             ]	(0.0739s x0.98 from start)
+    (leave) Call to mnt4_ate_miller_loop       	[0.0006s x1.00]	(0.0745s x0.98 from start)
+  (leave) Call to mnt4_ate_pairing           	[0.0017s x1.00]	(0.0745s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation  	[             ]	(0.0745s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0745s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.15]	(0.0745s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0745s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.07]	(0.0745s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0745s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0747s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0747s x0.98 from start)
+(leave) Call to mnt4_ate_reduced_pairing   	[0.0019s x1.00]	(0.0747s x0.98 from start)
+(enter) Call to mnt4_ate_reduced_pairing   	[             ]	(0.0747s x0.98 from start)
+  (enter) Call to mnt4_ate_pairing           	[             ]	(0.0747s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G1     	[             ]	(0.0747s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G1     	[0.0000s x1.07]	(0.0747s x0.98 from start)
+    (enter) Call to mnt4_ate_precompute_G2     	[             ]	(0.0747s x0.98 from start)
+    (leave) Call to mnt4_ate_precompute_G2     	[0.0011s x1.00]	(0.0758s x0.98 from start)
+    (enter) Call to mnt4_ate_miller_loop       	[             ]	(0.0758s x0.98 from start)
+    (leave) Call to mnt4_ate_miller_loop       	[0.0006s x1.00]	(0.0764s x0.98 from start)
+  (leave) Call to mnt4_ate_pairing           	[0.0017s x1.00]	(0.0764s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation  	[             ]	(0.0764s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0764s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.12]	(0.0764s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0764s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.07]	(0.0764s x0.98 from start)
+    (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0764s x0.98 from start)
+    (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0766s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0766s x0.98 from start)
+(leave) Call to mnt4_ate_reduced_pairing   	[0.0019s x1.00]	(0.0766s x0.98 from start)
+c0/c1:
+c0/c1:
+389920341055901394833096555053353388173434864179358288169162648014895359892696936309722458
+428963759405293641467895601881419939878414052734455918868686517830307311869077450244218719
+c0/c1:
+241547910059694825647494546719812657295638667854753384534038821909154043288513201965173825
+410479253374775171209151247770322600900437505517843345647153802779070592230640708092441309
+c0/c1:
+c0/c1:
+389920341055901394833096555053353388173434864179358288169162648014895359892696936309722458
+428963759405293641467895601881419939878414052734455918868686517830307311869077450244218719
+c0/c1:
+241547910059694825647494546719812657295638667854753384534038821909154043288513201965173825
+410479253374775171209151247770322600900437505517843345647153802779070592230640708092441309
+c0/c1:
+c0/c1:
+389920341055901394833096555053353388173434864179358288169162648014895359892696936309722458
+428963759405293641467895601881419939878414052734455918868686517830307311869077450244218719
+c0/c1:
+241547910059694825647494546719812657295638667854753384534038821909154043288513201965173825
+410479253374775171209151247770322600900437505517843345647153802779070592230640708092441309
+
+
+(enter) Call to mnt4_ate_precompute_G1     	[             ]	(0.0822s x0.98 from start)
+(leave) Call to mnt4_ate_precompute_G1     	[0.0000s x1.04]	(0.0822s x0.98 from start)
+(enter) Call to mnt4_ate_precompute_G1     	[             ]	(0.0822s x0.98 from start)
+(leave) Call to mnt4_ate_precompute_G1     	[0.0000s x1.02]	(0.0822s x0.98 from start)
+(enter) Call to mnt4_ate_precompute_G2     	[             ]	(0.0822s x0.98 from start)
+(leave) Call to mnt4_ate_precompute_G2     	[0.0011s x1.00]	(0.0833s x0.98 from start)
+(enter) Call to mnt4_ate_precompute_G2     	[             ]	(0.0833s x0.98 from start)
+(leave) Call to mnt4_ate_precompute_G2     	[0.0011s x1.00]	(0.0844s x0.98 from start)
+(enter) Call to mnt4_ate_miller_loop       	[             ]	(0.0844s x0.98 from start)
+(leave) Call to mnt4_ate_miller_loop       	[0.0006s x1.00]	(0.0850s x0.98 from start)
+(enter) Call to mnt4_ate_miller_loop       	[             ]	(0.0850s x0.98 from start)
+(leave) Call to mnt4_ate_miller_loop       	[0.0006s x1.00]	(0.0855s x0.98 from start)
+(enter) Call to mnt4_ate_double_miller_loop	[             ]	(0.0855s x0.98 from start)
+(leave) Call to mnt4_ate_double_miller_loop	[0.0010s x1.00]	(0.0865s x0.98 from start)
+Running bilinearity tests:
+P:
+(149434973795024058880139749936988222894556932137178308836203677326379865318000585538314605 , 36460681284829780719170377993051630500717098233224473966644464656643160786540618797397113)
+Q:
+(122303617435379605600465332137016971297280557660874704015561202216179546887339184945016760*z + 345675287370511684881484313098287446809409393867847041502604050011746180276538956744609388 , 75174202376029391087523347405954107186705552625555746633308867777463263996836087301591413*z + 111343780665288227929881209977614150986368740049881021491265097937926055601391661300211283)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to mnt4_affine_ate_precompute_G1	[             ]	(0.0911s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G1	[0.0000s x1.06]	(0.0911s x0.98 from start)
+(enter) Call to mnt4_affine_ate_precompute_G2	[             ]	(0.0911s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G2	[0.0010s x1.00]	(0.0921s x0.98 from start)
+(enter) Call to mnt4_affine_ate_miller_loop	[             ]	(0.0921s x0.98 from start)
+(leave) Call to mnt4_affine_ate_miller_loop	[0.0004s x1.00]	(0.0924s x0.98 from start)
+(enter) Call to mnt4_final_exponentiation  	[             ]	(0.0924s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0925s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.16]	(0.0925s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0925s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.07]	(0.0925s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0925s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0927s x0.98 from start)
+(leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0927s x0.98 from start)
+(enter) Call to mnt4_affine_ate_precompute_G1	[             ]	(0.0927s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G1	[0.0000s x1.11]	(0.0927s x0.98 from start)
+(enter) Call to mnt4_affine_ate_precompute_G2	[             ]	(0.0927s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G2	[0.0010s x1.00]	(0.0936s x0.98 from start)
+(enter) Call to mnt4_affine_ate_miller_loop	[             ]	(0.0937s x0.98 from start)
+(leave) Call to mnt4_affine_ate_miller_loop	[0.0004s x1.00]	(0.0940s x0.98 from start)
+(enter) Call to mnt4_final_exponentiation  	[             ]	(0.0940s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0940s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.14]	(0.0940s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0940s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.05]	(0.0940s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0940s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0943s x0.98 from start)
+(leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0943s x0.98 from start)
+(enter) Call to mnt4_affine_ate_precompute_G1	[             ]	(0.0943s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G1	[0.0000s x1.09]	(0.0943s x0.98 from start)
+(enter) Call to mnt4_affine_ate_precompute_G2	[             ]	(0.0943s x0.98 from start)
+(leave) Call to mnt4_affine_ate_precompute_G2	[0.0010s x1.00]	(0.0952s x0.98 from start)
+(enter) Call to mnt4_affine_ate_miller_loop	[             ]	(0.0952s x0.98 from start)
+(leave) Call to mnt4_affine_ate_miller_loop	[0.0004s x1.00]	(0.0956s x0.98 from start)
+(enter) Call to mnt4_final_exponentiation  	[             ]	(0.0956s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0956s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.13]	(0.0956s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_first_chunk	[             ]	(0.0956s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_first_chunk	[0.0000s x1.07]	(0.0956s x0.98 from start)
+  (enter) Call to mnt4_final_exponentiation_last_chunk	[             ]	(0.0956s x0.98 from start)
+  (leave) Call to mnt4_final_exponentiation_last_chunk	[0.0002s x1.00]	(0.0958s x0.98 from start)
+(leave) Call to mnt4_final_exponentiation  	[0.0002s x1.00]	(0.0958s x0.98 from start)
+c0/c1:
+c0/c1:
+121692283285570897525478763795549407705557307359070163587698586854176583636431105568323607
+432440356517389772032540336293508608897160653501404943441235414086027544517594422926817932
+c0/c1:
+329262302876705823045965100208530125329462622590254055959982222930342829278345695964470231
+457047046710515980187265301790241601197066051771783553619597692274256733667340495107943770
+c0/c1:
+c0/c1:
+121692283285570897525478763795549407705557307359070163587698586854176583636431105568323607
+432440356517389772032540336293508608897160653501404943441235414086027544517594422926817932
+c0/c1:
+329262302876705823045965100208530125329462622590254055959982222930342829278345695964470231
+457047046710515980187265301790241601197066051771783553619597692274256733667340495107943770
+c0/c1:
+c0/c1:
+121692283285570897525478763795549407705557307359070163587698586854176583636431105568323607
+432440356517389772032540336293508608897160653501404943441235414086027544517594422926817932
+c0/c1:
+329262302876705823045965100208530125329462622590254055959982222930342829278345695964470231
+457047046710515980187265301790241601197066051771783553619597692274256733667340495107943770
+
+
+Running bilinearity tests:
+P:
+(19957456361341900149410021744357445142793697180185065244931143203272538228246 , 8122214888555128639347457366089418666401068077068882162000952553077183583288)
+(6119182684255184730473434665931910391401745326808939863895394218421133676298 : 16427138229473240056864138183474588562606593672545056831011486934919122327033 : 11507425251875814031375344997852254249342639110666429439740766913855170384341)
+Q:
+(18664448909699206144835433075390774292814795475231236577712192826367914975789*z + 17752855878626110299281551025218879748495834185593357495254626653367319850120 , 1424792559129623622181662929328255654910447041921942263031327004523402852915*z + 19343563368151611207470711260841056500680956958126906074007322359449743757235)
+(13916326492987677809282371998493715035137578101832126591976301068034092795530*z + 8283165717309699511409444017129282642530318926794358802571814916432561720847 : 11267378678717493961652719381905858021713943661545450100725313308983937767612*z + 12260053452988456953987297555803508200390143072441851795350616363217540244691 : 14785462058340084084921189254500799085915167259374367101079913923681125160799*z + 15649899758054192576866326264379655299021463792994491537234983773847868259403)
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to alt_bn128_ate_reduced_pairing	[             ]	(0.0995s x0.98 from start)
+  (enter) Call to alt_bn128_ate_pairing      	[             ]	(0.0995s x0.98 from start)
+    (enter) Call to alt_bn128_ate_precompute_G1	[             ]	(0.0995s x0.98 from start)
+    (leave) Call to alt_bn128_ate_precompute_G1	[0.0000s x1.22]	(0.0995s x0.98 from start)
+    (enter) Call to alt_bn128_ate_precompute_G2	[             ]	(0.0995s x0.98 from start)
+    (leave) Call to alt_bn128_ate_precompute_G2	[0.0004s x1.01]	(0.0999s x0.98 from start)
+    (enter) Call to alt_bn128_ate_miller_loop  	[             ]	(0.1000s x0.98 from start)
+    (leave) Call to alt_bn128_ate_miller_loop  	[0.0009s x1.00]	(0.1008s x0.98 from start)
+  (leave) Call to alt_bn128_ate_pairing      	[0.0013s x1.00]	(0.1008s x0.98 from start)
+  (enter) Call to alt_bn128_final_exponentiation	[             ]	(0.1009s x0.98 from start)
+    (enter) Call to alt_bn128_final_exponentiation_first_chunk	[             ]	(0.1009s x0.98 from start)
+    (leave) Call to alt_bn128_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.1009s x0.98 from start)
+    (enter) Call to alt_bn128_final_exponentiation_last_chunk	[             ]	(0.1009s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1009s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0005s x1.00]	(0.1014s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1014s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1018s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1019s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1023s x0.98 from start)
+    (leave) Call to alt_bn128_final_exponentiation_last_chunk	[0.0015s x1.00]	(0.1024s x0.98 from start)
+  (leave) Call to alt_bn128_final_exponentiation	[0.0015s x1.00]	(0.1024s x0.98 from start)
+(leave) Call to alt_bn128_ate_reduced_pairing	[0.0029s x1.00]	(0.1024s x0.98 from start)
+(enter) Call to alt_bn128_ate_reduced_pairing	[             ]	(0.1024s x0.98 from start)
+  (enter) Call to alt_bn128_ate_pairing      	[             ]	(0.1024s x0.98 from start)
+    (enter) Call to alt_bn128_ate_precompute_G1	[             ]	(0.1024s x0.98 from start)
+    (leave) Call to alt_bn128_ate_precompute_G1	[0.0000s x1.11]	(0.1024s x0.98 from start)
+    (enter) Call to alt_bn128_ate_precompute_G2	[             ]	(0.1024s x0.98 from start)
+    (leave) Call to alt_bn128_ate_precompute_G2	[0.0003s x1.00]	(0.1027s x0.98 from start)
+    (enter) Call to alt_bn128_ate_miller_loop  	[             ]	(0.1027s x0.98 from start)
+    (leave) Call to alt_bn128_ate_miller_loop  	[0.0008s x1.00]	(0.1036s x0.98 from start)
+  (leave) Call to alt_bn128_ate_pairing      	[0.0012s x1.00]	(0.1036s x0.98 from start)
+  (enter) Call to alt_bn128_final_exponentiation	[             ]	(0.1036s x0.98 from start)
+    (enter) Call to alt_bn128_final_exponentiation_first_chunk	[             ]	(0.1036s x0.98 from start)
+    (leave) Call to alt_bn128_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.1036s x0.98 from start)
+    (enter) Call to alt_bn128_final_exponentiation_last_chunk	[             ]	(0.1036s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1036s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0005s x1.00]	(0.1041s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1041s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1046s x0.98 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1046s x0.98 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1050s x0.99 from start)
+    (leave) Call to alt_bn128_final_exponentiation_last_chunk	[0.0015s x1.00]	(0.1051s x0.99 from start)
+  (leave) Call to alt_bn128_final_exponentiation	[0.0015s x1.00]	(0.1051s x0.99 from start)
+(leave) Call to alt_bn128_ate_reduced_pairing	[0.0027s x1.00]	(0.1051s x0.99 from start)
+(enter) Call to alt_bn128_ate_reduced_pairing	[             ]	(0.1051s x0.99 from start)
+  (enter) Call to alt_bn128_ate_pairing      	[             ]	(0.1051s x0.99 from start)
+    (enter) Call to alt_bn128_ate_precompute_G1	[             ]	(0.1051s x0.99 from start)
+    (leave) Call to alt_bn128_ate_precompute_G1	[0.0000s x1.14]	(0.1051s x0.99 from start)
+    (enter) Call to alt_bn128_ate_precompute_G2	[             ]	(0.1051s x0.99 from start)
+    (leave) Call to alt_bn128_ate_precompute_G2	[0.0003s x1.00]	(0.1055s x0.99 from start)
+    (enter) Call to alt_bn128_ate_miller_loop  	[             ]	(0.1055s x0.99 from start)
+    (leave) Call to alt_bn128_ate_miller_loop  	[0.0008s x1.00]	(0.1063s x0.99 from start)
+  (leave) Call to alt_bn128_ate_pairing      	[0.0012s x1.00]	(0.1063s x0.99 from start)
+  (enter) Call to alt_bn128_final_exponentiation	[             ]	(0.1063s x0.99 from start)
+    (enter) Call to alt_bn128_final_exponentiation_first_chunk	[             ]	(0.1063s x0.99 from start)
+    (leave) Call to alt_bn128_final_exponentiation_first_chunk	[0.0000s x1.02]	(0.1064s x0.99 from start)
+    (enter) Call to alt_bn128_final_exponentiation_last_chunk	[             ]	(0.1064s x0.99 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1064s x0.99 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1068s x0.99 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1068s x0.99 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1073s x0.99 from start)
+      (enter) Call to alt_bn128_exp_by_neg_z     	[             ]	(0.1073s x0.99 from start)
+      (leave) Call to alt_bn128_exp_by_neg_z     	[0.0004s x1.00]	(0.1077s x0.99 from start)
+    (leave) Call to alt_bn128_final_exponentiation_last_chunk	[0.0014s x1.00]	(0.1078s x0.99 from start)
+  (leave) Call to alt_bn128_final_exponentiation	[0.0015s x1.00]	(0.1078s x0.99 from start)
+(leave) Call to alt_bn128_ate_reduced_pairing	[0.0027s x1.00]	(0.1078s x0.99 from start)
+c0/c1:
+c0/c1/c2:
+c0/c1:
+9575057465640325155276013172545008514045167041968906241047625830756862366677
+2791763369203100123906214291779119688273389090940165522271947335686591662626
+c0/c1:
+20866442096406204188530664255882172588763271189741770015964328175289416942183
+11290909628771441652040801619649248631114702311548332898538419972365477270535
+c0/c1:
+7227852348480111943224909312770401411103932264078213215500982099903687623144
+2701223596603976647043055751521635406343543051477975805922887503965757576480
+c0/c1/c2:
+c0/c1:
+17632386851279194635029562064956340435356734277371113820063588943456049851209
+10523303528275942222973746032554746114785745813627702158985183151439532420584
+c0/c1:
+2686903603088547847640733930400872544237093232173660895879460185626827803692
+20297901059086477835958506640832057768575033844294940024804637285764964659926
+c0/c1:
+4658267968607030806081148896387501518014269174221636245237800531117991763267
+1881815765503875932434379196415979690024863730129361751495603194181008184709
+c0/c1:
+c0/c1/c2:
+c0/c1:
+9575057465640325155276013172545008514045167041968906241047625830756862366677
+2791763369203100123906214291779119688273389090940165522271947335686591662626
+c0/c1:
+20866442096406204188530664255882172588763271189741770015964328175289416942183
+11290909628771441652040801619649248631114702311548332898538419972365477270535
+c0/c1:
+7227852348480111943224909312770401411103932264078213215500982099903687623144
+2701223596603976647043055751521635406343543051477975805922887503965757576480
+c0/c1/c2:
+c0/c1:
+17632386851279194635029562064956340435356734277371113820063588943456049851209
+10523303528275942222973746032554746114785745813627702158985183151439532420584
+c0/c1:
+2686903603088547847640733930400872544237093232173660895879460185626827803692
+20297901059086477835958506640832057768575033844294940024804637285764964659926
+c0/c1:
+4658267968607030806081148896387501518014269174221636245237800531117991763267
+1881815765503875932434379196415979690024863730129361751495603194181008184709
+c0/c1:
+c0/c1/c2:
+c0/c1:
+9575057465640325155276013172545008514045167041968906241047625830756862366677
+2791763369203100123906214291779119688273389090940165522271947335686591662626
+c0/c1:
+20866442096406204188530664255882172588763271189741770015964328175289416942183
+11290909628771441652040801619649248631114702311548332898538419972365477270535
+c0/c1:
+7227852348480111943224909312770401411103932264078213215500982099903687623144
+2701223596603976647043055751521635406343543051477975805922887503965757576480
+c0/c1/c2:
+c0/c1:
+17632386851279194635029562064956340435356734277371113820063588943456049851209
+10523303528275942222973746032554746114785745813627702158985183151439532420584
+c0/c1:
+2686903603088547847640733930400872544237093232173660895879460185626827803692
+20297901059086477835958506640832057768575033844294940024804637285764964659926
+c0/c1:
+4658267968607030806081148896387501518014269174221636245237800531117991763267
+1881815765503875932434379196415979690024863730129361751495603194181008184709
+
+
+(enter) Call to alt_bn128_ate_precompute_G1	[             ]	(0.1156s x0.99 from start)
+(leave) Call to alt_bn128_ate_precompute_G1	[0.0000s x1.09]	(0.1156s x0.99 from start)
+(enter) Call to alt_bn128_ate_precompute_G1	[             ]	(0.1156s x0.99 from start)
+(leave) Call to alt_bn128_ate_precompute_G1	[0.0000s x1.05]	(0.1156s x0.99 from start)
+(enter) Call to alt_bn128_ate_precompute_G2	[             ]	(0.1156s x0.99 from start)
+(leave) Call to alt_bn128_ate_precompute_G2	[0.0004s x1.00]	(0.1160s x0.99 from start)
+(enter) Call to alt_bn128_ate_precompute_G2	[             ]	(0.1160s x0.99 from start)
+(leave) Call to alt_bn128_ate_precompute_G2	[0.0003s x1.00]	(0.1163s x0.99 from start)
+(enter) Call to alt_bn128_ate_miller_loop  	[             ]	(0.1163s x0.99 from start)
+(leave) Call to alt_bn128_ate_miller_loop  	[0.0008s x1.00]	(0.1172s x0.99 from start)
+(enter) Call to alt_bn128_ate_miller_loop  	[             ]	(0.1172s x0.99 from start)
+(leave) Call to alt_bn128_ate_miller_loop  	[0.0009s x1.00]	(0.1181s x0.99 from start)
+(enter) Call to alt_bn128_ate_double_miller_loop	[             ]	(0.1181s x0.99 from start)
+(leave) Call to alt_bn128_ate_double_miller_loop	[0.0014s x1.00]	(0.1194s x0.99 from start)
+Running bilinearity tests:
+P:
+(16397118639188366454072769674475427055395303206787066357749469702731235672988 : 4558566048615324734235745344682485031324473381829160905012588373045820741024 : 1)
+(8635839581940959219488231920677143240626095500151440469656883062196568594407 : 3839914438295228620356658314800423729368749369914375691952915680328461406608 : 328649437273965711128593846488052037626277583115357461570450905167993221859)
+Q:
+([16924390307448560737107982404014884069278501242755730888372204879642838425772,15764427328471465935440571084621637056482326038962404645885022307131094131332] : [18802462664604030486242822650946051273382170532401415650177276380363768203514,11055702714726705521350334512235531870429566958028858122280654065716897802121] : [1,0])
+([6822582908953816172414196875005891723302444173284143195213162329078618747380,16572496795948269592332503532826391613592076582631790757531395472876260069504] : [5661382868011505009562665032643064595928808053451099354882317170159527796629,3109397371322325283104563862886226687273275857537262365298720345714406694323] : [3530215086154030424787677424700308729523494391108687898650829877712127286441,16091865900551452517507733283412917987594212757177505269771233981396430559812])
+
+
+Pairing bilinearity tests (three must match):
+(enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.1213s x0.99 from start)
+  (enter) Call to pairing<bn128_pp>          	[             ]	(0.1213s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1213s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.09]	(0.1213s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1213s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.01]	(0.1214s x0.99 from start)
+    (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1214s x0.99 from start)
+    (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.1216s x0.99 from start)
+  (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.1216s x0.99 from start)
+  (enter) Call to bn128_final_exponentiation 	[             ]	(0.1216s x0.99 from start)
+  (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.1219s x0.99 from start)
+(leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.1219s x0.99 from start)
+(enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.1219s x0.99 from start)
+  (enter) Call to pairing<bn128_pp>          	[             ]	(0.1219s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1219s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.10]	(0.1219s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1219s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.01]	(0.1220s x0.99 from start)
+    (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1220s x0.99 from start)
+    (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.1222s x0.99 from start)
+  (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.1222s x0.99 from start)
+  (enter) Call to bn128_final_exponentiation 	[             ]	(0.1222s x0.99 from start)
+  (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.1225s x0.99 from start)
+(leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.1225s x0.99 from start)
+(enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.1225s x0.99 from start)
+  (enter) Call to pairing<bn128_pp>          	[             ]	(0.1225s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1225s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.07]	(0.1225s x0.99 from start)
+    (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1225s x0.99 from start)
+    (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.1226s x0.99 from start)
+    (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1226s x0.99 from start)
+    (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.1228s x0.99 from start)
+  (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.1228s x0.99 from start)
+  (enter) Call to bn128_final_exponentiation 	[             ]	(0.1228s x0.99 from start)
+  (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.1231s x0.99 from start)
+(leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.1231s x0.99 from start)
+[[[8931479598427856317653063878321458095017751088717802985514354378902409056443,16835379049242952228164826458384243688314903014661392075755547993963895994574],
+ [992033988241612474295074079538865739482056738301599781796490375318377222061,7048034018122695636156931279523566546332011246533283351281426901812648743997],
+ [5360375655316887576230117933581350400490629643164661083706422825859251463979,2687653232686288653136534913059041940183310934064130102762012594788552496177]],
+ [[12119726642385755895615367799336195338225962671136165716359586685730876025241,6732054530577850273391528658943610246252601097959516514780091239199188994478],
+ [9995311804444542679056600492435561936254198205454918317969548309392979598179,5814001020812822179727905596910185709023100319480772532519145404301587366005],
+ [1252483589106707447075914156968365380660449037299816427088406673522177946786,333465228458036753531154771987190412894182425371287854135702103758110892669]]]
+[[[8931479598427856317653063878321458095017751088717802985514354378902409056443,16835379049242952228164826458384243688314903014661392075755547993963895994574],
+ [992033988241612474295074079538865739482056738301599781796490375318377222061,7048034018122695636156931279523566546332011246533283351281426901812648743997],
+ [5360375655316887576230117933581350400490629643164661083706422825859251463979,2687653232686288653136534913059041940183310934064130102762012594788552496177]],
+ [[12119726642385755895615367799336195338225962671136165716359586685730876025241,6732054530577850273391528658943610246252601097959516514780091239199188994478],
+ [9995311804444542679056600492435561936254198205454918317969548309392979598179,5814001020812822179727905596910185709023100319480772532519145404301587366005],
+ [1252483589106707447075914156968365380660449037299816427088406673522177946786,333465228458036753531154771987190412894182425371287854135702103758110892669]]]
+[[[8931479598427856317653063878321458095017751088717802985514354378902409056443,16835379049242952228164826458384243688314903014661392075755547993963895994574],
+ [992033988241612474295074079538865739482056738301599781796490375318377222061,7048034018122695636156931279523566546332011246533283351281426901812648743997],
+ [5360375655316887576230117933581350400490629643164661083706422825859251463979,2687653232686288653136534913059041940183310934064130102762012594788552496177]],
+ [[12119726642385755895615367799336195338225962671136165716359586685730876025241,6732054530577850273391528658943610246252601097959516514780091239199188994478],
+ [9995311804444542679056600492435561936254198205454918317969548309392979598179,5814001020812822179727905596910185709023100319480772532519145404301587366005],
+ [1252483589106707447075914156968365380660449037299816427088406673522177946786,333465228458036753531154771987190412894182425371287854135702103758110892669]]]
+
+
+(enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1255s x0.99 from start)
+(leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.05]	(0.1256s x0.99 from start)
+(enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1256s x0.99 from start)
+(leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.05]	(0.1256s x0.99 from start)
+(enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1256s x0.99 from start)
+(leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.01]	(0.1256s x0.99 from start)
+(enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1256s x0.99 from start)
+(leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.1257s x0.99 from start)
+(enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1257s x0.99 from start)
+(leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.1259s x0.99 from start)
+(enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1259s x0.99 from start)
+(leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.1261s x0.99 from start)
+(enter) Call to double_miller_loop<bn128_pp>	[             ]	(0.1261s x0.99 from start)
+(leave) Call to double_miller_loop<bn128_pp>	[0.0003s x1.00]	(0.1264s x0.99 from start)
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"algebra_bilinearity_test" end time: Jun 07 12:31 CST
+"algebra_bilinearity_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: algebra_groups_test
+2/3 Test: algebra_groups_test
+Command: "/home/yuncong/Projects/libff/build/src/algebra_groups_test"
+Directory: /home/yuncong/Projects/libff/build/src
+"algebra_groups_test" start time: Jun 07 12:31 CST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =  11.49 sec
+----------------------------------------------------------
+Test Passed.
+"algebra_groups_test" end time: Jun 07 12:31 CST
+"algebra_groups_test" time elapsed: 00:00:11
+----------------------------------------------------------
+
+3/3 Testing: algebra_fields_test
+3/3 Test: algebra_fields_test
+Command: "/home/yuncong/Projects/libff/build/src/algebra_fields_test"
+Directory: /home/yuncong/Projects/libff/build/src
+"algebra_fields_test" start time: Jun 07 12:31 CST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.46 sec
+----------------------------------------------------------
+Test Passed.
+"algebra_fields_test" end time: Jun 07 12:31 CST
+"algebra_fields_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 07 12:31 CST

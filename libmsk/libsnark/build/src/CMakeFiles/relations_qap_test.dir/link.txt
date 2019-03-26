@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native   CMakeFiles/relations_qap_test.dir/relations/arithmetic_programs/qap/tests/test_qap.cpp.o  -o relations_qap_test -rdynamic libsnark.a -lgmp -lgmpxx -lcrypto -lprocps /usr/local/lib/libff.a -lprocps /usr/local/lib/libff.a ../third_party/libzm.a 

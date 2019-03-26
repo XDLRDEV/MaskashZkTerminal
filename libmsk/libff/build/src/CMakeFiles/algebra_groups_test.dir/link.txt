@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native   CMakeFiles/algebra_groups_test.dir/algebra/curves/tests/test_groups.cpp.o  -o algebra_groups_test -rdynamic libff.a -lgmp -lgmpxx -lcrypto -lprocps ../third_party/libzm.a 

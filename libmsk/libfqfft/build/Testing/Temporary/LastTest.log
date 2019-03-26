@@ -1,0 +1,165 @@
+Start testing: Jun 07 13:07 CST
+----------------------------------------------------------
+1/1 Testing: gtests
+1/1 Test: gtests
+Command: "/home/yuncong/Projects/libfqfft/build/src/gtests"
+Directory: /home/yuncong/Projects/libfqfft/build/src
+"gtests" start time: Jun 07 13:07 CST
+Output:
+----------------------------------------------------------
+Running main() from gtest_main.cc
+[==========] Running 26 tests from 4 test cases.
+[----------] Global test environment set-up.
+[----------] 5 tests from EvaluationDomainTest/0, where TypeParam = libff::Fp_model<5l, libff::mnt46_modulus_A>
+[ RUN      ] EvaluationDomainTest/0.FFT
+extended_radix2(): expected logm == FieldT::s + 1 - skipping
+[       OK ] EvaluationDomainTest/0.FFT (0 ms)
+[ RUN      ] EvaluationDomainTest/0.InverseFFTofFFT
+extended_radix2(): expected logm == FieldT::s + 1 - skipping
+[       OK ] EvaluationDomainTest/0.InverseFFTofFFT (1 ms)
+[ RUN      ] EvaluationDomainTest/0.InverseCosetFFTofCosetFFT
+extended_radix2(): expected logm == FieldT::s + 1 - skipping
+[       OK ] EvaluationDomainTest/0.InverseCosetFFTofCosetFFT (0 ms)
+[ RUN      ] EvaluationDomainTest/0.LagrangeCoefficients
+8604239876081398105 == 8604239876081398105
+6727725685108281804 == 6727725685108281804
+6021529708918185102 == 6021529708918185102
+-8672858129864896056 == -8672858129864896056
+6127711232979806485 == 6127711232979806485
+5607822086181446769 == 5607822086181446769
+8710421400142519438 == 8710421400142519438
+7354468502987514997 == 7354468502987514997
+extended_radix2(): expected logm == FieldT::s + 1 - skipping
+8604239876081398105 == 8604239876081398105
+6021529708918185102 == 6021529708918185102
+6127711232979806485 == 6127711232979806485
+8710421400142519438 == 8710421400142519438
+6727725685108281804 == 6727725685108281804
+-8672858129864896056 == -8672858129864896056
+5607822086181446769 == 5607822086181446769
+7354468502987514997 == 7354468502987514997
+7384186903335305300 == 7384186903335305300
+7548044701675791237 == 7548044701675791237
+-1544406568649535252 == -1544406568649535252
+1215467308995890383 == 1215467308995890383
+-4994999779324644556 == -4994999779324644556
+3509618270083209309 == 3509618270083209309
+5401195558141975678 == 5401195558141975678
+3515209894566712929 == 3515209894566712929
+-4953057286198132771 == -4953057286198132771
+280 == 280
+-4953057286198133680 == -4953057286198133680
+1800 == 1800
+-4953057286198134835 == -4953057286198134835
+1512 == 1512
+-4953057286198133365 == -4953057286198133365
+120 == 120
+[       OK ] EvaluationDomainTest/0.LagrangeCoefficients (0 ms)
+[ RUN      ] EvaluationDomainTest/0.ComputeZ
+extended_radix2(): expected logm == FieldT::s + 1 - skipping
+[       OK ] EvaluationDomainTest/0.ComputeZ (0 ms)
+[----------] 5 tests from EvaluationDomainTest/0 (1 ms total)
+
+[----------] 5 tests from EvaluationDomainTest/1, where TypeParam = libff::Double
+[ RUN      ] EvaluationDomainTest/1.FFT
+[       OK ] EvaluationDomainTest/1.FFT (0 ms)
+[ RUN      ] EvaluationDomainTest/1.InverseFFTofFFT
+[       OK ] EvaluationDomainTest/1.InverseFFTofFFT (1 ms)
+[ RUN      ] EvaluationDomainTest/1.InverseCosetFFTofCosetFFT
+[       OK ] EvaluationDomainTest/1.InverseCosetFFTofCosetFFT (0 ms)
+[ RUN      ] EvaluationDomainTest/1.LagrangeCoefficients
+1388889 == 1388889
+873707 == 873707
+-123762 == -123762
+-876207 == -876207
+-1136364 == -1136364
+-876207 == -876207
+-123762 == -123762
+873707 == 873707
+-10613 == -10613
+946 == 946
+8684 == 8684
+946 == 946
+249 == 249
+-51 == -51
+-107 == -107
+-51 == -51
+1388889 == 1388889
+-123762 == -123762
+-1136364 == -1136364
+-123762 == -123762
+873707 == 873707
+-876207 == -876207
+-876207 == -876207
+873707 == 873707
+-1 == -1
+2 == 2
+-2 == -2
+2 == 2
+0 == 0
+0 == 0
+0 == 0
+0 == 0
+-36 == -36
+280 == 280
+-945 == -945
+1800 == 1800
+-2100 == -2100
+1512 == 1512
+-630 == -630
+120 == 120
+[       OK ] EvaluationDomainTest/1.LagrangeCoefficients (0 ms)
+[ RUN      ] EvaluationDomainTest/1.ComputeZ
+[       OK ] EvaluationDomainTest/1.ComputeZ (0 ms)
+[----------] 5 tests from EvaluationDomainTest/1 (1 ms total)
+
+[----------] 14 tests from PolynomialArithmeticTest/0, where TypeParam = libff::Double
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialAdditionSame
+[       OK ] PolynomialArithmeticTest/0.PolynomialAdditionSame (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialAdditionBiggerA
+[       OK ] PolynomialArithmeticTest/0.PolynomialAdditionBiggerA (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialAdditionBiggerB
+[       OK ] PolynomialArithmeticTest/0.PolynomialAdditionBiggerB (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialAdditionZeroA
+[       OK ] PolynomialArithmeticTest/0.PolynomialAdditionZeroA (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialAdditionZeroB
+[       OK ] PolynomialArithmeticTest/0.PolynomialAdditionZeroB (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialSubtractionSame
+[       OK ] PolynomialArithmeticTest/0.PolynomialSubtractionSame (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialSubtractionBiggerA
+[       OK ] PolynomialArithmeticTest/0.PolynomialSubtractionBiggerA (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialSubtractionBiggerB
+[       OK ] PolynomialArithmeticTest/0.PolynomialSubtractionBiggerB (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialSubtractionZeroA
+[       OK ] PolynomialArithmeticTest/0.PolynomialSubtractionZeroA (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialSubtractionZeroB
+[       OK ] PolynomialArithmeticTest/0.PolynomialSubtractionZeroB (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialMultiplicationBasic
+[       OK ] PolynomialArithmeticTest/0.PolynomialMultiplicationBasic (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialMultiplicationZero
+[       OK ] PolynomialArithmeticTest/0.PolynomialMultiplicationZero (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.PolynomialDivision
+[       OK ] PolynomialArithmeticTest/0.PolynomialDivision (0 ms)
+[ RUN      ] PolynomialArithmeticTest/0.ExtendedGCD
+[       OK ] PolynomialArithmeticTest/0.ExtendedGCD (0 ms)
+[----------] 14 tests from PolynomialArithmeticTest/0 (0 ms total)
+
+[----------] 2 tests from KroneckerSubstitutionTest/0, where TypeParam = libff::Double
+[ RUN      ] KroneckerSubstitutionTest/0.StandardPolynomialMultiplication
+[       OK ] KroneckerSubstitutionTest/0.StandardPolynomialMultiplication (0 ms)
+[ RUN      ] KroneckerSubstitutionTest/0.SquaredPolynomialMultiplication
+[       OK ] KroneckerSubstitutionTest/0.SquaredPolynomialMultiplication (0 ms)
+[----------] 2 tests from KroneckerSubstitutionTest/0 (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 26 tests from 4 test cases ran. (2 ms total)
+[  PASSED  ] 26 tests.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gtests" end time: Jun 07 13:07 CST
+"gtests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 07 13:07 CST

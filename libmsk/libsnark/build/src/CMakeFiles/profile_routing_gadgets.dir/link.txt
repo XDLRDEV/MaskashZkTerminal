@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native   CMakeFiles/profile_routing_gadgets.dir/gadgetlib1/gadgets/routing/profiling/profile_routing_gadgets.cpp.o  -o profile_routing_gadgets -rdynamic libsnark.a -lgmp -lgmpxx -lcrypto -lprocps /usr/local/lib/libff.a -lprocps /usr/local/lib/libff.a ../third_party/libzm.a 

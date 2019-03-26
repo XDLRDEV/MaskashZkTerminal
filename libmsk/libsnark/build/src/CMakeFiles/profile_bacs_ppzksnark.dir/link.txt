@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native   CMakeFiles/profile_bacs_ppzksnark.dir/zk_proof_systems/ppzksnark/bacs_ppzksnark/profiling/profile_bacs_ppzksnark.cpp.o  -o profile_bacs_ppzksnark -rdynamic libsnark.a -lgmp -lgmpxx -lcrypto -lprocps /usr/local/lib/libff.a -lprocps /usr/local/lib/libff.a ../third_party/libzm.a 

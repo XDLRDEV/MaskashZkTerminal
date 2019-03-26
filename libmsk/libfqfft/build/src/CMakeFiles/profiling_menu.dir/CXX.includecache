@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yuncong/Projects/libfqfft/src/profiling/profiling_menu.cpp
+cmath
+-
+ctime
+-
+dirent.h
+-
+iostream
+-
+fstream
+-
+sstream
+-
+stdio.h
+-
+string.h
+-
+stdint.h
+-
+stdlib.h
+-
+sys/resource.h
+-
+unistd.h
+-
+vector
+-
+

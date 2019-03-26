@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native   CMakeFiles/gadgetlib1_fooram_test.dir/gadgetlib1/gadgets/cpu_checkers/fooram/examples/test_fooram.cpp.o  -o gadgetlib1_fooram_test -rdynamic libsnark.a -lgmp -lgmpxx -lcrypto -lprocps /usr/local/lib/libff.a -lprocps /usr/local/lib/libff.a ../third_party/libzm.a 
