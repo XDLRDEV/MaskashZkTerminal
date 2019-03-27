@@ -152,19 +152,26 @@ int main(){
     transferZero tr= makeTransferZero<FieldT>( apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2);
 
 
-    std::string tmpProofS = proofToString(tr.pi);
+    std::string tmpProofS = "\"";
+    tmpProofS += proofToString(tr.pi);
+    tmpProofS += "\",";
     std::cout<<"tmpProofS:\n----------\n";
     std::cout<<tmpProofS<<"\n-----------\n";
-    r1cs_ppzksnark_proof<ppT> tmpProof = stringToProof(tmpProofS);
-    std::cout<<"tmpProof:\n----------\n";
-    std::cout<<tmpProof<<"\n-----------\n";
 
-    std::string tmpVkS = verifyKeyToString(tr.vk);
-    std::cout<<"tmpVkS:\n----------\n";
-    std::cout<<tmpVkS<<"\n-----------\n";
+    tmpProofS = tmpProofS.substr(1, tmpProofS.length()-3);
+
+    r1cs_ppzksnark_proof<ppT> tmpProof = stringToProof(tmpProofS);
+
+
+    std::string tmpVkS = "\"";
+    tmpVkS += verifyKeyToString(tr.vk);
+    tmpVkS += "\",";
+    tmpVkS = tmpVkS.substr(1, tmpVkS.length()-3);
+    //std::cout<<"tmpVkS:\n----------\n";
+    //std::cout<<tmpVkS<<"\n-----------\n";
     r1cs_ppzksnark_verification_key<ppT> tmpVk = stringToVerifyKey(tmpVkS);
-    std::cout<<"tmpVk:\n----------\n";
-    std::cout<<tmpVk<<"\n-----------\n";
+    //std::cout<<"tmpVk:\n----------\n";
+    //std::cout<<tmpVk<<"\n-----------\n";
 
 
 
