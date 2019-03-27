@@ -2632,6 +2632,7 @@ typedef struct msgMint{
      unsigned char data[32*6];
      string Sigpub;
 }ms;
+
 msgMint makeMsgMint(uint256 kmint,int64_t v,uint256 upk)
 {
      

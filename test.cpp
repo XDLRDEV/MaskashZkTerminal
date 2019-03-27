@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include <ostream>
+#include <fstream>
 
 using namespace std;
 using namespace libsnark;
@@ -45,15 +47,29 @@ public:
 
     mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs) {
         this->txType="txTransferZero";
-        this->m_transferZero = makeTransferZero<FieldT>(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs);
+        this->m_transferZero = makeTransferZero<FieldT>(_Rpk, _pr1, _pr2, _vr, _Ssk, _ps, _vs);
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _ps, uint256 _pr, uint64_t _vr, uint256 _Ssk) {
         this->txType="txTransferOne";
-        this->m_transferOne =  makeTransferOne<FieldT>(uint256 _Rpk, uint256 _ps, uint256 _pr, uint64_t _vr, uint256 _Ssk);
+        this->m_transferOne =  makeTransferOne<FieldT>(_Rpk, _ps, _pr, _vr, _Ssk);
     }
 
+    void toString() {
+        if(this->txType=="txMint") {
+            std::string kmintS = this->m_msgMint.kmint.ToString();
+            //std::string dataS(this->m_msgMint.data);
+            std::string SigpubS = this->m_msgMint.Sigpub;
+        } 
+        else if (this->txType=="txTransferZero") {
+            std::string SNoldS = this->m_transferZero.SNold.ToString();
+            std::string krnewS = this->m_transferZero.krnew.ToString();
+            std::string ksnewS = this->m_transferZero.ksnew.ToString();
+        } 
+        else if (this->txType=="txTransferOne") {
 
+        }
+    }
 
 private:
     std::string txType;
@@ -79,10 +95,42 @@ private:
 
 };
 
+std::string proofToString(r1cs_ppzksnark_proof<ppT> proof) {
+  stringstream ss("");
+  string proof_str;
+  ss<<proof;            // 把一个什么东西流进ss
+  proof_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+  return proof_str;
+}
+
+r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
+    r1cs_ppzksnark_proof<ppT> tmpProof;
+    stringstream ss("");
+    ss<<proofS;
+    ss>>tmpProof;
+    return tmpProof;
+}
+
+std::string verifyKeyToString(r1cs_ppzksnark_verification_key<ppT> vk) {
+    stringstream ss("");
+    string vk_str;
+    ss<<vk;            // 把一个什么东西流进ss
+    vk_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+    return vk_str;
+}
+
+r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
+    r1cs_ppzksnark_verification_key<ppT> tmpVk;
+    stringstream ss("");
+    ss<<vkS;
+    ss>>tmpVk;
+    return tmpVk;
+}
+
 int main(){
-    mskMsgMaker tmp(uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), 18446744073709551610);
-    tmp.toString();
-/*
+    //mskMsgMaker tmp(uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), 18446744073709551610);
+    //tmp.toString();
+
     ppT::init_public_params();
     //using FieldT = ppT::Fp_type;
     inhibit_profiling_info = true;
@@ -102,9 +150,78 @@ int main(){
     uint256 new_r2=uint256S("038cce42abd366b83ede9e009130de5372cdf73dee3251148cb48d1b5af68ad0");
 
     transferZero tr= makeTransferZero<FieldT>( apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2);
-    bool t=transferZeroVerify<FieldT>(tr.SNold ,tr.krnew,tr.ksnew, tr.data, tr.pi,tr.vk,tr.c_rt,tr.s_rt,tr.r_rt);
-    cout<<t<<endl;
-    return 0;
+
+
+    std::string tmpProofS = proofToString(tr.pi);
+    std::cout<<"tmpProofS:\n----------\n";
+    std::cout<<tmpProofS<<"\n-----------\n";
+    r1cs_ppzksnark_proof<ppT> tmpProof = stringToProof(tmpProofS);
+    std::cout<<"tmpProof:\n----------\n";
+    std::cout<<tmpProof<<"\n-----------\n";
+
+    std::string tmpVkS = verifyKeyToString(tr.vk);
+    std::cout<<"tmpVkS:\n----------\n";
+    std::cout<<tmpVkS<<"\n-----------\n";
+    r1cs_ppzksnark_verification_key<ppT> tmpVk = stringToVerifyKey(tmpVkS);
+    std::cout<<"tmpVk:\n----------\n";
+    std::cout<<tmpVk<<"\n-----------\n";
+
+
+
+
+/*
+//---------------------------------------------------
+    fstream file; // 定义fstream对象
+    file.open("./cout.txt", ios::out); // 打开文件，并绑定到ios::out对象
+    //string line;
+  
+    // 先获取cout、cin的buffer指针
+    streambuf *stream_buffer_cout = cout.rdbuf();
+    streambuf *stream_buffer_cin = cin.rdbuf();
+  
+    // 获取文件的buffer指针
+    streambuf *stream_buffer_file = file.rdbuf();
+  
+    // cout重定向到文件
+    cout.rdbuf(stream_buffer_file);
+  
+    cout<<tr.pi<<endl;
+  
+    // cout重定向到cout，即输出到屏幕
+    cout.rdbuf(stream_buffer_cout);
+  
+    file.close(); // 关闭文件
+//---------
+    fstream file2; // 定义fstream对象
+    file2.open("./cout.txt", ios::in); // 打开文件，并绑定到ios::in对象
+    //string line;
+  
+    // 先获取cout、cin的buffer指针
+    //streambuf *stream_buffer_cout = cout.rdbuf();
+    //streambuf *stream_buffer_cin = cin.rdbuf();
+  
+    // 获取文件的buffer指针
+    //streambuf *stream_buffer_file = file.rdbuf();
+  
+    // cin重定向到文件
+    cin.rdbuf(stream_buffer_file);
+  
+    r1cs_ppzksnark_proof<ppT> pi2;
+
+    cin>>pi2;
+  
+    // cout重定向到cout，即输出到屏幕
+    cin.rdbuf(stream_buffer_cin);
+  
+    file2.close(); // 关闭文件
+    std::cout<<"tr.pi2: \n"<<pi2;
+//-------------------------------------------------------
 */
+
+
+    bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data, tmpProof, tmpVk, tr.c_rt, tr.s_rt, tr.r_rt);
+
+    return 0;
+
  } 
    
