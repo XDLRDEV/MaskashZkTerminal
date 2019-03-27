@@ -1,3 +1,5 @@
+#include <boost/lexical_cast.hpp>
+
 #include "libmsk/donator2/libsnark/common/default_types/r1cs_ppzksnark_pp.hpp"
 #include "libmsk/donator2/interface.hpp"
 
@@ -29,7 +31,7 @@ public:
         std::string vS = tmp;
         std::string pS = this->mintReq.p.ToString();
         
-        this->mintReqS = msgType+","+UpkS+","+kmintS+","+vS+","+pS;
+        this->mintReqS = msgType+"|||"+UpkS+"|||"+kmintS+"|||"+vS+"|||"+pS;     // 使用"|||"作为分隔符
         std::cout<<mintReqS<<endl;
     }
 
@@ -56,19 +58,97 @@ public:
     }
 
     void toString() {
-        if(this->txType=="txMint") {
+        if(this->txType=="txMint") {        // 发币交易到字符串的转换 
             std::string kmintS = this->m_msgMint.kmint.ToString();
-            //std::string dataS(this->m_msgMint.data);
+            std::string dataS(this->m_msgMint.data);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<int>(usgnCharToInt(m_msgMint.data[i]));
+                dataS += boost::lexical_cast<std::string>(tmp);
+            }
             std::string SigpubS = this->m_msgMint.Sigpub;
+
+            this->mskTxS = txType+"|||"+kmintS+"|||"+dataS+"|||"+SigpubS;
         } 
         else if (this->txType=="txTransferZero") {
             std::string SNoldS = this->m_transferZero.SNold.ToString();
             std::string krnewS = this->m_transferZero.krnew.ToString();
             std::string ksnewS = this->m_transferZero.ksnew.ToString();
+            std::string proofS = proofToString(this->m_transferZero.pi);
+            std::string dataS(this->m_transferZero.data);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<int>(usgnCharToInt(m_transferZero.data[i]));
+                dataS += boost::lexical_cast<std::string>(tmp);
+            }
+            std::string vkS = verifyKeyToString(this->m_transferZero.vk);
+            std::string c_rtS = this->m_transferZero.c_rt.ToString();
+            std::string s_rtS = this->m_transferZero.s_rt.ToString();
+            std::string r_rtS = this->m_transferZero.r_rt.ToString();
+
+            this->mskTxS = txType+"|||"+SNoldS+"|||"+krnewS +"|||"+ksnewS +"|||"+proofS +"|||"+dataS +"|||"+\
+                           vkS +"|||"+c_rtS +"|||"+s_rtS+"|||"+r_rtS;
         } 
         else if (this->txType=="txTransferOne") {
+            std::string SNoldS = this->m_transferOne.SNold.ToString();
+            std::string krnewS = this->m_transferOne.krnew.ToString();
+            std::string proofS = proofToString(this->m_transferOne.pi);
+            std::string dataS(this->m_transferOne.data);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<int>(usgnCharToInt(m_transferZero.data[i]));
+                dataS += boost::lexical_cast<std::string>(tmp);
+            }
+            std::string vkS = verifyKeyToString(this->m_transferOne.vk);
+            std::string c_rtS = this->m_transferOne.c_rt.ToString();
+            std::string s_rtS = this->m_transferOne.s_rt.ToString();
+            std::string r_rtS = this->m_transferOne.r_rt.ToString();
 
+            this->mskTxS = txType+"|||"+SNoldS+"|||"+krnewS +"|||"+proofS +"|||"+dataS +"|||"+\
+                           vkS +"|||"+c_rtS +"|||"+s_rtS+"|||"+r_rtS;
         }
+    }
+
+    // char: -128 ~ 127
+    // usgn char: 0 ~ 255
+    int usgnCharToInt(unsigned char _uc) {
+        int tmp = _uc;
+        return tmp;
+    }
+
+    unsigned char intToUsgnChar(int _int) {
+        unsigned char tmp;
+        tmp = _int;
+        return tmp;
+    }
+
+    std::string proofToString(r1cs_ppzksnark_proof<ppT> proof) {
+        stringstream ss("");
+        string proof_str;
+        ss<<proof;            // 把一个什么东西流进ss
+        proof_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+        return proof_str;
+    }
+
+    r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
+        r1cs_ppzksnark_proof<ppT> tmpProof;
+        stringstream ss("");
+        ss<<proofS;
+        ss>>tmpProof;
+        return tmpProof;
+    }
+
+    std::string verifyKeyToString(r1cs_ppzksnark_verification_key<ppT> vk) {
+        stringstream ss("");
+        string vk_str;
+        ss<<vk;            // 把一个什么东西流进ss
+        vk_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+        return vk_str;
+    }
+
+    r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
+        r1cs_ppzksnark_verification_key<ppT> tmpVk;
+        stringstream ss("");
+        ss<<vkS;
+        ss>>tmpVk;
+        return tmpVk;
     }
 
 private:
@@ -95,41 +175,9 @@ private:
 
 };
 
-std::string proofToString(r1cs_ppzksnark_proof<ppT> proof) {
-  stringstream ss("");
-  string proof_str;
-  ss<<proof;            // 把一个什么东西流进ss
-  proof_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
-  return proof_str;
-}
 
-r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
-    r1cs_ppzksnark_proof<ppT> tmpProof;
-    stringstream ss("");
-    ss<<proofS;
-    ss>>tmpProof;
-    return tmpProof;
-}
-
-std::string verifyKeyToString(r1cs_ppzksnark_verification_key<ppT> vk) {
-    stringstream ss("");
-    string vk_str;
-    ss<<vk;            // 把一个什么东西流进ss
-    vk_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
-    return vk_str;
-}
-
-r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
-    r1cs_ppzksnark_verification_key<ppT> tmpVk;
-    stringstream ss("");
-    ss<<vkS;
-    ss>>tmpVk;
-    return tmpVk;
-}
 
 int main(){
-    //mskMsgMaker tmp(uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0"), 18446744073709551610);
-    //tmp.toString();
 
     ppT::init_public_params();
     //using FieldT = ppT::Fp_type;
@@ -151,7 +199,7 @@ int main(){
 
     transferZero tr= makeTransferZero<FieldT>( apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2);
 
-
+/*
     std::string tmpProofS = "\"";
     tmpProofS += proofToString(tr.pi);
     tmpProofS += "\",";
@@ -173,7 +221,7 @@ int main(){
     //std::cout<<"tmpVk:\n----------\n";
     //std::cout<<tmpVk<<"\n-----------\n";
 
-
+*/
 
 
 /*
