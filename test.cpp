@@ -10,11 +10,11 @@
 #include <fstream>
 
 using namespace std;
-using namespace libsnark;
-using namespace libff;
+//using namespace libsnark;
+//using namespace libff;
 
-using ppT = default_r1cs_ppzksnark_pp; 
-using FieldT = ppT::Fp_type;
+//using ppT = default_r1cs_ppzksnark_pp; 
+//using FieldT = ppT::Fp_type;
 
 class mskMsgMaker {
 public:
@@ -56,14 +56,13 @@ public:
 
     mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs) {
         this->txType="Z";
-        std::cout<<"===========================point_1"<<endl;
-        this->m_transferZero = makeTransferZero<FieldT>(_Rpk, _pr1, _pr2, _vr, _Ssk, _ps, _vs);
+        this->m_transferZero = makeTransferZero<libsnark::default_r1cs_ppzksnark_pp::Fp_type>(_Rpk, _pr1, _pr2, _vr, _Ssk, _ps, _vs);
         this->toString();
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _ps, uint256 _pr, uint64_t _vr, uint256 _Ssk) {
         this->txType="O";
-        this->m_transferOne =  makeTransferOne<FieldT>(_Rpk, _ps, _pr, _vr, _Ssk);
+        this->m_transferOne =  makeTransferOne<libsnark::default_r1cs_ppzksnark_pp::Fp_type>(_Rpk, _ps, _pr, _vr, _Ssk);
         this->toString();
     }
 
@@ -80,7 +79,6 @@ public:
             this->mskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
         } 
         else if (this->txType=="Z") {
-            std::cout<<"===================================point_2"<<endl;
             std::string SNoldS = this->m_transferZero.SNold.ToString();
             std::string krnewS = this->m_transferZero.krnew.ToString();
             std::string ksnewS = this->m_transferZero.ksnew.ToString();
@@ -94,7 +92,6 @@ public:
             std::string c_rtS = this->m_transferZero.c_rt.ToString();
             std::string s_rtS = this->m_transferZero.s_rt.ToString();
             std::string r_rtS = this->m_transferZero.r_rt.ToString();
-            std::cout<<"===================================point_3"<<endl;
             this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+ksnewS +"||"+proofS +"||"+dataS +"||"+\
                            vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
         } 
@@ -130,33 +127,33 @@ public:
         return tmp;
     }
 
-    std::string proofToString(r1cs_ppzksnark_proof<ppT> proof) {
-        stringstream ss("");
+    std::string proofToString(r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> proof) {
+        std::stringstream ss("");
         string proof_str;
         ss<<proof;
         proof_str=ss.str();
         return proof_str;
     }
 
-    r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
-        r1cs_ppzksnark_proof<ppT> tmpProof;
-        stringstream ss("");
+    libsnark::r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> stringToProof(std::string proofS) {
+        libsnark::r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> tmpProof;
+        std::stringstream ss("");
         ss<<proofS;
         ss>>tmpProof;
         return tmpProof;
     }
 
-    std::string verifyKeyToString(r1cs_ppzksnark_verification_key<ppT> vk) {
-        stringstream ss("");
+    std::string verifyKeyToString(r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> vk) {
+        std::stringstream ss("");
         string vk_str;
         ss<<vk;
         vk_str=ss.str();
         return vk_str;
     }
 
-    r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
-        r1cs_ppzksnark_verification_key<ppT> tmpVk;
-        stringstream ss("");
+    libsnark::r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> stringToVerifyKey(std::string vkS) {
+        libsnark::r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> tmpVk;
+        std::stringstream ss("");
         ss<<vkS;
         ss>>tmpVk;
         return tmpVk;
@@ -233,7 +230,7 @@ public:
             this->m_transferZero.s_rt = uint256S(s_rtS);
             this->m_transferZero.r_rt = uint256S(r_rtS);
             
-            transferZeroVerify<FieldT>(this->m_transferZero.SNold, this->m_transferZero.krnew,\
+            transferZeroVerify<libsnark::default_r1cs_ppzksnark_pp::Fp_type>(this->m_transferZero.SNold, this->m_transferZero.krnew,\
                                        this->m_transferZero.ksnew, this->m_transferZero.data,\
                                        this->m_transferZero.pi, this->m_transferZero.vk, \
                                        this->m_transferZero.c_rt, this->m_transferZero.s_rt, this->m_transferZero.r_rt);
@@ -282,17 +279,17 @@ public:
         return tmp;
     }
 
-    r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
-        r1cs_ppzksnark_proof<ppT> tmpProof;
-        stringstream ss("");
+    libsnark::r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> stringToProof(std::string proofS) {
+        r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> tmpProof;
+        std::stringstream ss("");
         ss<<proofS;
         ss>>tmpProof;
         return tmpProof;
     }
 
-    r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
-        r1cs_ppzksnark_verification_key<ppT> tmpVk;
-        stringstream ss("");
+    libsnark::r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> stringToVerifyKey(std::string vkS) {
+        r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> tmpVk;
+        std::stringstream ss("");
         ss<<vkS;
         ss>>tmpVk;
         return tmpVk;
