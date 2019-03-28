@@ -51,22 +51,26 @@ public:
     mskTxMaker(uint256 _kmint, int64_t _v, uint256 _upk) {
         this->txType="M";
         this->m_msgMint = makeMsgMint(_kmint, _v, _upk);
+        this->toString();
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs) {
         this->txType="Z";
+        std::cout<<"===========================point_1"<<endl;
         this->m_transferZero = makeTransferZero<FieldT>(_Rpk, _pr1, _pr2, _vr, _Ssk, _ps, _vs);
+        this->toString();
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _ps, uint256 _pr, uint64_t _vr, uint256 _Ssk) {
         this->txType="O";
         this->m_transferOne =  makeTransferOne<FieldT>(_Rpk, _ps, _pr, _vr, _Ssk);
+        this->toString();
     }
 
     void toString() {
-        if(this->txType=="txMint") {        // 发币交易到字符串的转换 
+        if(this->txType=="M") {        // 发币交易到字符串的转换 
             std::string kmintS = this->m_msgMint.kmint.ToString();
-            std::string dataS(this->m_msgMint.data);
+            std::string dataS;
             for(int i=0; i<192; i++) {
                 int tmp = boost::lexical_cast<int>(usgnCharToInt(m_msgMint.data[i]));
                 dataS += boost::lexical_cast<std::string>(tmp);
@@ -75,12 +79,13 @@ public:
 
             this->mskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
         } 
-        else if (this->txType=="txTransferZero") {
+        else if (this->txType=="Z") {
+            std::cout<<"===================================point_2"<<endl;
             std::string SNoldS = this->m_transferZero.SNold.ToString();
             std::string krnewS = this->m_transferZero.krnew.ToString();
             std::string ksnewS = this->m_transferZero.ksnew.ToString();
             std::string proofS = proofToString(this->m_transferZero.pi);
-            std::string dataS(this->m_transferZero.data);
+            std::string dataS;
             for(int i=0; i<192; i++) {
                 int tmp = boost::lexical_cast<int>(usgnCharToInt(m_transferZero.data[i]));
                 dataS += boost::lexical_cast<std::string>(tmp);
@@ -89,17 +94,17 @@ public:
             std::string c_rtS = this->m_transferZero.c_rt.ToString();
             std::string s_rtS = this->m_transferZero.s_rt.ToString();
             std::string r_rtS = this->m_transferZero.r_rt.ToString();
-
+            std::cout<<"===================================point_3"<<endl;
             this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+ksnewS +"||"+proofS +"||"+dataS +"||"+\
                            vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
         } 
-        else if (this->txType=="txTransferOne") {
+        else if (this->txType=="O") {
             std::string SNoldS = this->m_transferOne.SNold.ToString();
             std::string krnewS = this->m_transferOne.krnew.ToString();
             std::string proofS = proofToString(this->m_transferOne.pi);
-            std::string dataS(this->m_transferOne.data);
+            std::string dataS;
             for(int i=0; i<192; i++) {
-                int tmp = boost::lexical_cast<int>(usgnCharToInt(m_transferZero.data[i]));
+                int tmp = boost::lexical_cast<int>(usgnCharToInt(m_transferOne.data[i]));
                 dataS += boost::lexical_cast<std::string>(tmp);
             }
             std::string vkS = verifyKeyToString(this->m_transferOne.vk);
@@ -157,7 +162,7 @@ public:
         return tmpVk;
     }
 
-private:
+//private:
     std::string txType;
 
     msgMint m_msgMint;
@@ -176,13 +181,7 @@ private:
 class mskVerifier {
 public:
     mskVerifier(std::string mskTxS) {
-
-    }
-    
-    unsigned char intToUsgnChar(int _int) {
-        unsigned char tmp;
-        tmp = _int;
-        return tmp;
+        strTxToStructTx(mskTxS);
     }
 
     void strTxToStructTx(std::string mskTxS) {
@@ -195,10 +194,11 @@ public:
             std::string SigpubS = mskTxS.substr(0, mskTxS.length());
             this->m_msgMint.kmint = uint256S(kmintS);
             for(int i=0; i<192; i++) {
-                int tmp = boost::lexical_cast<string>(dataS[i]);
+                int tmp = boost::lexical_cast<int>(dataS[i]);
                 m_msgMint.data[i] = intToUsgnChar(tmp);
             }
             this->m_msgMint.Sigpub = SigpubS;
+            
         } else if(mskTxS[0]=='Z') { // txType+||+SNoldS+||+krnewS +||+ksnewS +||+proofS +||+dataS +||+\
                                         vkS +||+c_rtS +||+s_rtS+||+r_rtS;
             mskTxS = mskTxS.substr(3);
@@ -225,14 +225,18 @@ public:
             this->m_transferZero.ksnew = uint256S(ksnewS);
             this->m_transferZero.pi = stringToProof(proofS);
             for(int i=0; i<192; i++) {
-                int tmp = boost::lexical_cast<string>(dataS[i]);
+                int tmp = boost::lexical_cast<int>(dataS[i]);
                 m_transferZero.data[i] = intToUsgnChar(tmp);
             }
             this->m_transferZero.vk = stringToVerifyKey(vkS);
             this->m_transferZero.c_rt = uint256S(c_rtS);
             this->m_transferZero.s_rt = uint256S(s_rtS);
             this->m_transferZero.r_rt = uint256S(r_rtS);
-
+            
+            transferZeroVerify<FieldT>(this->m_transferZero.SNold, this->m_transferZero.krnew,\
+                                       this->m_transferZero.ksnew, this->m_transferZero.data,\
+                                       this->m_transferZero.pi, this->m_transferZero.vk, \
+                                       this->m_transferZero.c_rt, this->m_transferZero.s_rt, this->m_transferZero.r_rt);
 
         } else if(mskTxS[0]=='O') { //txType+||+SNoldS+||+krnewS +||+proofS +||+dataS +||+\
                                        vkS +||+c_rtS +||+s_rtS+||+r_rtS;
@@ -257,7 +261,7 @@ public:
             this->m_transferOne.krnew = uint256S(krnewS);
             this->m_transferOne.pi = stringToProof(proofS);
             for(int i=0; i<192; i++) {
-                int tmp = boost::lexical_cast<string>(dataS[i]);
+                int tmp = boost::lexical_cast<int>(dataS[i]);
                 m_transferOne.data[i] = intToUsgnChar(tmp);
             }
             this->m_transferOne.vk = stringToVerifyKey(vkS);
@@ -321,7 +325,15 @@ int main(){
     uint256 new_r1=uint256S("038cce42abd366b83ede9e009130de5372cdf73dee3251148cb48d1b5af68ad0");
     uint256 new_r2=uint256S("038cce42abd366b83ede9e009130de5372cdf73dee3251148cb48d1b5af68ad0");
 
-    transferZero tr= makeTransferZero<FieldT>( apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2);
+    //transferZero tr= makeTransferZero<FieldT>( apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2);
+
+
+    // mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs)
+    mskTxMaker zeroTx = mskTxMaker(apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2 );
+    //std::cout<<"----------"<<endl<<zeroTx.mskTxS<<endl<<"-----------"<<endl;
+
+    mskVerifier mskV = mskVerifier(zeroTx.mskTxS);
+
 
 /*
     std::string tmpProofS = "\"";
@@ -346,7 +358,7 @@ int main(){
     //std::cout<<tmpVk<<"\n-----------\n";
 
 */
-/*
+
 //---------------------------------------------------
     fstream file; // 定义fstream对象
     file.open("./cout.txt", ios::out); // 打开文件，并绑定到ios::out对象
@@ -362,40 +374,18 @@ int main(){
     // cout重定向到文件
     cout.rdbuf(stream_buffer_file);
   
-    cout<<tr.pi<<endl;
+    cout<<zeroTx.mskTxS;
+
+    //cout<<tr.pi<<endl;
   
     // cout重定向到cout，即输出到屏幕
     cout.rdbuf(stream_buffer_cout);
   
     file.close(); // 关闭文件
-//---------
-    fstream file2; // 定义fstream对象
-    file2.open("./cout.txt", ios::in); // 打开文件，并绑定到ios::in对象
-    //string line;
-  
-    // 先获取cout、cin的buffer指针
-    //streambuf *stream_buffer_cout = cout.rdbuf();
-    //streambuf *stream_buffer_cin = cin.rdbuf();
-  
-    // 获取文件的buffer指针
-    //streambuf *stream_buffer_file = file.rdbuf();
-  
-    // cin重定向到文件
-    cin.rdbuf(stream_buffer_file);
-  
-    r1cs_ppzksnark_proof<ppT> pi2;
-
-    cin>>pi2;
-  
-    // cout重定向到cout，即输出到屏幕
-    cin.rdbuf(stream_buffer_cin);
-  
-    file2.close(); // 关闭文件
-    std::cout<<"tr.pi2: \n"<<pi2;
 //-------------------------------------------------------
-*/
-    bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data,\
-                                     tmpProof, tmpVk, tr.c_rt, tr.s_rt, tr.r_rt);
+
+    //bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data,\
+                                     tr.pi, tr.vk, tr.c_rt, tr.s_rt, tr.r_rt);
 
     return 0;
 
