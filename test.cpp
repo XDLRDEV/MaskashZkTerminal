@@ -40,12 +40,12 @@ private:
     std::string mintReqS;
 };
 
+
 /**
  * M = Mint
  * Z = whole coin
  * O = div coin
 */
-
 class mskTxMaker {
 public:
     mskTxMaker(uint256 _kmint, int64_t _v, uint256 _upk) {
@@ -166,8 +166,6 @@ private:
 
     std::string mskTxS;
 };
-
-
 
 
 /**
@@ -301,8 +299,6 @@ private:
     transferZero m_transferZero;
     transferOne m_transferOne;
 };
-
-
 
 
 int main(){
