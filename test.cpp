@@ -161,19 +161,16 @@ private:
     std::string mskTxS;
 };
 
-class mskMsgVerifier {
+class mskVerifier {
 public:
+    mskVerifier(std::string _mskTxS) {
 
+    }
+    
 private:
 
 };
 
-class mskTxVerifier {
-public:
-
-private:
-
-};
 
 
 
@@ -222,8 +219,6 @@ int main(){
     //std::cout<<tmpVk<<"\n-----------\n";
 
 */
-
-
 /*
 //---------------------------------------------------
     fstream file; // 定义fstream对象
@@ -272,8 +267,6 @@ int main(){
     std::cout<<"tr.pi2: \n"<<pi2;
 //-------------------------------------------------------
 */
-
-
     bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data, tmpProof, tmpVk, tr.c_rt, tr.s_rt, tr.r_rt);
 
     return 0;
