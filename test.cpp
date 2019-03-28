@@ -31,7 +31,7 @@ public:
         std::string vS = tmp;
         std::string pS = this->mintReq.p.ToString();
         
-        this->mintReqS = msgType+"|||"+UpkS+"|||"+kmintS+"|||"+vS+"|||"+pS;     // 使用"|||"作为分隔符
+        this->mintReqS = msgType+"||"+UpkS+"||"+kmintS+"||"+vS+"||"+pS;     // 使用"|||"作为分隔符
         std::cout<<mintReqS<<endl;
     }
 
@@ -40,20 +40,26 @@ private:
     std::string mintReqS;
 };
 
+/**
+ * M = Mint
+ * Z = whole coin
+ * O = div coin
+*/
+
 class mskTxMaker {
 public:
     mskTxMaker(uint256 _kmint, int64_t _v, uint256 _upk) {
-        this->txType="txMint";
+        this->txType="M";
         this->m_msgMint = makeMsgMint(_kmint, _v, _upk);
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs) {
-        this->txType="txTransferZero";
+        this->txType="Z";
         this->m_transferZero = makeTransferZero<FieldT>(_Rpk, _pr1, _pr2, _vr, _Ssk, _ps, _vs);
     }
 
     mskTxMaker(uint256 _Rpk, uint256 _ps, uint256 _pr, uint64_t _vr, uint256 _Ssk) {
-        this->txType="txTransferOne";
+        this->txType="O";
         this->m_transferOne =  makeTransferOne<FieldT>(_Rpk, _ps, _pr, _vr, _Ssk);
     }
 
@@ -67,7 +73,7 @@ public:
             }
             std::string SigpubS = this->m_msgMint.Sigpub;
 
-            this->mskTxS = txType+"|||"+kmintS+"|||"+dataS+"|||"+SigpubS;
+            this->mskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
         } 
         else if (this->txType=="txTransferZero") {
             std::string SNoldS = this->m_transferZero.SNold.ToString();
@@ -84,8 +90,8 @@ public:
             std::string s_rtS = this->m_transferZero.s_rt.ToString();
             std::string r_rtS = this->m_transferZero.r_rt.ToString();
 
-            this->mskTxS = txType+"|||"+SNoldS+"|||"+krnewS +"|||"+ksnewS +"|||"+proofS +"|||"+dataS +"|||"+\
-                           vkS +"|||"+c_rtS +"|||"+s_rtS+"|||"+r_rtS;
+            this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+ksnewS +"||"+proofS +"||"+dataS +"||"+\
+                           vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
         } 
         else if (this->txType=="txTransferOne") {
             std::string SNoldS = this->m_transferOne.SNold.ToString();
@@ -101,8 +107,8 @@ public:
             std::string s_rtS = this->m_transferOne.s_rt.ToString();
             std::string r_rtS = this->m_transferOne.r_rt.ToString();
 
-            this->mskTxS = txType+"|||"+SNoldS+"|||"+krnewS +"|||"+proofS +"|||"+dataS +"|||"+\
-                           vkS +"|||"+c_rtS +"|||"+s_rtS+"|||"+r_rtS;
+            this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+proofS +"||"+dataS +"||"+\
+                           vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
         }
     }
 
@@ -122,8 +128,8 @@ public:
     std::string proofToString(r1cs_ppzksnark_proof<ppT> proof) {
         stringstream ss("");
         string proof_str;
-        ss<<proof;            // 把一个什么东西流进ss
-        proof_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+        ss<<proof;
+        proof_str=ss.str();
         return proof_str;
     }
 
@@ -138,8 +144,8 @@ public:
     std::string verifyKeyToString(r1cs_ppzksnark_verification_key<ppT> vk) {
         stringstream ss("");
         string vk_str;
-        ss<<vk;            // 把一个什么东西流进ss
-        vk_str=ss.str();   // ss.str()的值便成为了流进ss的这堆东西
+        ss<<vk;
+        vk_str=ss.str();
         return vk_str;
     }
 
@@ -161,14 +167,139 @@ private:
     std::string mskTxS;
 };
 
+
+
+
+/**
+ * M = Mint
+ * Z = whole coin
+ * O = div coin
+*/
 class mskVerifier {
 public:
-    mskVerifier(std::string _mskTxS) {
+    mskVerifier(std::string mskTxS) {
 
     }
     
-private:
+    unsigned char intToUsgnChar(int _int) {
+        unsigned char tmp;
+        tmp = _int;
+        return tmp;
+    }
 
+    void strTxToStructTx(std::string mskTxS) {
+        if(mskTxS[0]=='M') {       // txType+||+kmintS+||+dataS+||+SigpubS
+            mskTxS = mskTxS.substr(3);
+            std::string kmintS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string dataS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string SigpubS = mskTxS.substr(0, mskTxS.length());
+            this->m_msgMint.kmint = uint256S(kmintS);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<string>(dataS[i]);
+                m_msgMint.data[i] = intToUsgnChar(tmp);
+            }
+            this->m_msgMint.Sigpub = SigpubS;
+        } else if(mskTxS[0]=='Z') { // txType+||+SNoldS+||+krnewS +||+ksnewS +||+proofS +||+dataS +||+\
+                                        vkS +||+c_rtS +||+s_rtS+||+r_rtS;
+            mskTxS = mskTxS.substr(3);
+            std::string SNoldS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string krnewS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string ksnewS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string proofS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string dataS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string vkS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string c_rtS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string s_rtS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string r_rtS = mskTxS.substr(0, mskTxS.length());
+
+            this->m_transferZero.SNold = uint256S(SNoldS);
+            this->m_transferZero.krnew = uint256S(krnewS);
+            this->m_transferZero.ksnew = uint256S(ksnewS);
+            this->m_transferZero.pi = stringToProof(proofS);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<string>(dataS[i]);
+                m_transferZero.data[i] = intToUsgnChar(tmp);
+            }
+            this->m_transferZero.vk = stringToVerifyKey(vkS);
+            this->m_transferZero.c_rt = uint256S(c_rtS);
+            this->m_transferZero.s_rt = uint256S(s_rtS);
+            this->m_transferZero.r_rt = uint256S(r_rtS);
+
+
+        } else if(mskTxS[0]=='O') { //txType+||+SNoldS+||+krnewS +||+proofS +||+dataS +||+\
+                                       vkS +||+c_rtS +||+s_rtS+||+r_rtS;
+            mskTxS = mskTxS.substr(3);
+            std::string SNoldS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string krnewS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string proofS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string dataS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string vkS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string c_rtS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string s_rtS = mskTxS.substr(0, mskTxS.find("||", 0));
+            mskTxS = mskTxS.substr(mskTxS.find("||", 0)+2);
+            std::string r_rtS = mskTxS.substr(0, mskTxS.length());
+
+            this->m_transferOne.SNold = uint256S(SNoldS);
+            this->m_transferOne.krnew = uint256S(krnewS);
+            this->m_transferOne.pi = stringToProof(proofS);
+            for(int i=0; i<192; i++) {
+                int tmp = boost::lexical_cast<string>(dataS[i]);
+                m_transferOne.data[i] = intToUsgnChar(tmp);
+            }
+            this->m_transferOne.vk = stringToVerifyKey(vkS);
+            this->m_transferOne.c_rt = uint256S(c_rtS);
+            this->m_transferOne.s_rt = uint256S(s_rtS);
+            this->m_transferOne.r_rt = uint256S(r_rtS);
+        }
+    }
+
+    int usgnCharToInt(unsigned char _uc) {
+        int tmp = _uc;
+        return tmp;
+    }
+
+    unsigned char intToUsgnChar(int _int) {
+        unsigned char tmp;
+        tmp = _int;
+        return tmp;
+    }
+
+    r1cs_ppzksnark_proof<ppT> stringToProof(std::string proofS) {
+        r1cs_ppzksnark_proof<ppT> tmpProof;
+        stringstream ss("");
+        ss<<proofS;
+        ss>>tmpProof;
+        return tmpProof;
+    }
+
+    r1cs_ppzksnark_verification_key<ppT> stringToVerifyKey(std::string vkS) {
+        r1cs_ppzksnark_verification_key<ppT> tmpVk;
+        stringstream ss("");
+        ss<<vkS;
+        ss>>tmpVk;
+        return tmpVk;
+    }
+
+private:
+    msgMint m_msgMint;
+    transferZero m_transferZero;
+    transferOne m_transferOne;
 };
 
 
@@ -267,7 +398,8 @@ int main(){
     std::cout<<"tr.pi2: \n"<<pi2;
 //-------------------------------------------------------
 */
-    bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data, tmpProof, tmpVk, tr.c_rt, tr.s_rt, tr.r_rt);
+    bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data,\
+                                     tmpProof, tmpVk, tr.c_rt, tr.s_rt, tr.r_rt);
 
     return 0;
 
