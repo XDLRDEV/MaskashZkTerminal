@@ -3,6 +3,11 @@
 #include "libmsk/donator2/libsnark/common/default_types/r1cs_ppzksnark_pp.hpp"
 #include "libmsk/donator2/interface.hpp"
 
+#include <boost/archive/iterators/base64_from_binary.hpp>
+#include <boost/archive/iterators/binary_from_base64.hpp>
+#include <boost/archive/iterators/transform_width.hpp>
+#include <boost/algorithm/string.hpp>
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -66,6 +71,22 @@ public:
         this->toString();
     }
 
+    bool Base64Encode( const string & input, string * output ) {
+        typedef boost::archive::iterators::base64_from_binary<boost::archive::iterators::transform_width<string::const_iterator, 6, 8>> Base64EncodeIterator;
+        stringstream result;
+        try {
+            copy( Base64EncodeIterator( input.begin() ), Base64EncodeIterator( input.end() ), ostream_iterator<char>( result ) );
+        } catch ( ... ) {
+            return false;
+        }
+        size_t equal_count = (3 - input.length() % 3) % 3;
+        for ( size_t i = 0; i < equal_count; i++ ) {
+            result.put( '=' );
+        }
+        *output = result.str();
+        return output->empty() == false;
+    }
+
     void toString() {
         if(this->txType=="M") {        // 发币交易到字符串的转换 
             std::string kmintS = this->m_msgMint.kmint.ToString();
@@ -76,7 +97,11 @@ public:
             }
             std::string SigpubS = this->m_msgMint.Sigpub;
 
-            this->mskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
+            std::string tmpMskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
+
+            this->Base64Encode(tmpMskTxS, &this->mskTxS);
+            
+            // this->mskTxS = txType+"||"+kmintS+"||"+dataS+"||"+SigpubS;
         } 
         else if (this->txType=="Z") {
             std::string SNoldS = this->m_transferZero.SNold.ToString();
@@ -92,8 +117,11 @@ public:
             std::string c_rtS = this->m_transferZero.c_rt.ToString();
             std::string s_rtS = this->m_transferZero.s_rt.ToString();
             std::string r_rtS = this->m_transferZero.r_rt.ToString();
-            this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+ksnewS +"||"+proofS +"||"+dataS +"||"+\
-                           vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
+            std::string tmpMskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+ksnewS +"||"+proofS +"||"+dataS +"||"+\
+                                    vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
+
+            this->Base64Encode(tmpMskTxS, &this->mskTxS);
+            //std::cout<<"Encoded:\n"<<this->mskTxS<<std::endl;
         } 
         else if (this->txType=="O") {
             std::string SNoldS = this->m_transferOne.SNold.ToString();
@@ -109,8 +137,10 @@ public:
             std::string s_rtS = this->m_transferOne.s_rt.ToString();
             std::string r_rtS = this->m_transferOne.r_rt.ToString();
 
-            this->mskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+proofS +"||"+dataS +"||"+\
-                           vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
+            std::string tmpMskTxS = txType+"||"+SNoldS+"||"+krnewS +"||"+proofS +"||"+dataS +"||"+\
+                                    vkS +"||"+c_rtS +"||"+s_rtS+"||"+r_rtS;
+
+            this->Base64Encode(tmpMskTxS, &this->mskTxS);
         }
     }
 
@@ -177,8 +207,25 @@ public:
 */
 class mskVerifier {
 public:
-    mskVerifier(std::string mskTxS) {
+    mskVerifier() {}
+
+    mskVerifier(std::string _mskTxS) {
+        std::string mskTxS;
+        Base64Decode(_mskTxS, &mskTxS);
+        //std::cout<<"Decode Status:"<<Base64Decode(_mskTxS, &mskTxS)<<"\n"<<"Decoded:\n"<<mskTxS<<std::endl;
         strTxToStructTx(mskTxS);
+    }
+
+    bool Base64Decode( const string & input, string * output ) {
+        typedef boost::archive::iterators::transform_width<boost::archive::iterators::binary_from_base64<string::const_iterator>, 8, 6> Base64DecodeIterator;
+        stringstream result;
+        try {
+            copy( Base64DecodeIterator( input.begin() ), Base64DecodeIterator( input.end() ), ostream_iterator<char>( result ) );
+        } catch ( ... ) {
+            return false;
+        }
+        *output = result.str();
+        return output->empty() == false;
     }
 
     void strTxToStructTx(std::string mskTxS) {
@@ -265,6 +312,8 @@ public:
             this->m_transferOne.c_rt = uint256S(c_rtS);
             this->m_transferOne.s_rt = uint256S(s_rtS);
             this->m_transferOne.r_rt = uint256S(r_rtS);
+        } else {
+            std::cout<<"\n FAILED!!  strTxToStructTx and Verify \n";
         }
     }
 
@@ -355,7 +404,7 @@ int main(){
     //std::cout<<tmpVk<<"\n-----------\n";
 
 */
-
+/*
 //---------------------------------------------------
     fstream file; // 定义fstream对象
     file.open("./cout.txt", ios::out); // 打开文件，并绑定到ios::out对象
@@ -380,7 +429,7 @@ int main(){
   
     file.close(); // 关闭文件
 //-------------------------------------------------------
-
+*/
     //bool t=transferZeroVerify<FieldT>(tr.SNold, tr.krnew, tr.ksnew, tr.data,\
                                      tr.pi, tr.vk, tr.c_rt, tr.s_rt, tr.r_rt);
 
