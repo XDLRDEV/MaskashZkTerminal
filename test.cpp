@@ -216,11 +216,11 @@ public:
         strTxToStructTx(mskTxS);
     }
 
-    bool Base64Decode( const string & input, string * output ) {
-        typedef boost::archive::iterators::transform_width<boost::archive::iterators::binary_from_base64<string::const_iterator>, 8, 6> Base64DecodeIterator;
+    bool Base64Decode( const std::string & input, std::string * output ) {
+        typedef boost::archive::iterators::transform_width<boost::archive::iterators::binary_from_base64<std::string::const_iterator>, 8, 6> Base64DecodeIterator;
         stringstream result;
         try {
-            copy( Base64DecodeIterator( input.begin() ), Base64DecodeIterator( input.end() ), ostream_iterator<char>( result ) );
+            copy( Base64DecodeIterator( input.begin() ), Base64DecodeIterator( input.end() ), std::ostream_iterator<char>( result ) );
         } catch ( ... ) {
             return false;
         }
@@ -265,18 +265,26 @@ public:
             std::string r_rtS = mskTxS.substr(0, mskTxS.length());
 
             this->m_transferZero.SNold = uint256S(SNoldS);
+            std::cout<<endl<<"FL2"<<endl;
             this->m_transferZero.krnew = uint256S(krnewS);
+            std::cout<<endl<<"FL3"<<endl;
             this->m_transferZero.ksnew = uint256S(ksnewS);
+            std::cout<<endl<<"FL4"<<endl;
             this->m_transferZero.pi = stringToProof(proofS);
+            std::cout<<endl<<"FL5"<<endl;
             for(int i=0; i<192; i++) {
                 int tmp = boost::lexical_cast<int>(dataS[i]);
                 m_transferZero.data[i] = intToUsgnChar(tmp);
             }
+            std::cout<<endl<<"FL5.5"<<endl;
             this->m_transferZero.vk = stringToVerifyKey(vkS);
+            std::cout<<endl<<"FL6"<<endl;
             this->m_transferZero.c_rt = uint256S(c_rtS);
+            std::cout<<endl<<"FL7"<<endl;
             this->m_transferZero.s_rt = uint256S(s_rtS);
+            std::cout<<endl<<"FL8"<<endl;
             this->m_transferZero.r_rt = uint256S(r_rtS);
-            
+            std::cout<<endl<<"BEGIN VERIFY"<<endl;
             transferZeroVerify<libsnark::default_r1cs_ppzksnark_pp::Fp_type>(this->m_transferZero.SNold, this->m_transferZero.krnew,\
                                        this->m_transferZero.ksnew, this->m_transferZero.data,\
                                        this->m_transferZero.pi, this->m_transferZero.vk, \
@@ -329,7 +337,7 @@ public:
     }
 
     libsnark::r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> stringToProof(std::string proofS) {
-        r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> tmpProof;
+        libsnark::r1cs_ppzksnark_proof<libsnark::default_r1cs_ppzksnark_pp> tmpProof;
         std::stringstream ss("");
         ss<<proofS;
         ss>>tmpProof;
@@ -337,7 +345,7 @@ public:
     }
 
     libsnark::r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> stringToVerifyKey(std::string vkS) {
-        r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> tmpVk;
+        libsnark::r1cs_ppzksnark_verification_key<libsnark::default_r1cs_ppzksnark_pp> tmpVk;
         std::stringstream ss("");
         ss<<vkS;
         ss>>tmpVk;
@@ -350,6 +358,11 @@ private:
     transferOne m_transferOne;
 };
 
+std::string demoMaker(std::string _mskTxS) {
+    std::string tmpstr;
+    tmpstr="eth.sendTransaction({from:\"0x62808DEDC60186480096d0517bbb174A875E39D9\",to: \"0xCed054D472CC39CC8386041AE87B9b2684E122A3\", value: \"123456\",maskashMsg: \""+_mskTxS+"\"})";
+    return tmpstr;
+}
 
 int main(){
 
@@ -359,7 +372,6 @@ int main(){
     inhibit_profiling_counters = true;
 
     uint256 ask_s=uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad0");
-   
     uint256 apk_r=uint256S("038cce42abd366b83ede7e009130de5372cdf73dee8251148cb48d1b9af68ad1");
 
     uint64_t v_1=5;
@@ -377,9 +389,19 @@ int main(){
     // mskTxMaker(uint256 _Rpk, uint256 _pr1, uint256 _pr2, uint64_t _vr, uint256 _Ssk, uint256 _ps, uint64_t _vs)
     mskTxMaker zeroTx = mskTxMaker(apk_r, new_r1,new_r2,v_1,ask_s,old_r,v_2 );
     //std::cout<<"----------"<<endl<<zeroTx.mskTxS<<endl<<"-----------"<<endl;
-
+    std::string tmpstr = demoMaker(zeroTx.mskTxS);
     mskVerifier mskV = mskVerifier(zeroTx.mskTxS);
+    mskVerifier mskV2 = mskVerifier(zeroTx.mskTxS);
 
+
+    std::fstream fileD; // 定义fstream对象
+    fileD.open("./sendDemo.js", std::ios::out); // 打开文件，并绑定到ios::out对象
+    std::streambuf *stream_buffer_cout9 = std::cout.rdbuf();
+    std::streambuf *stream_buffer_file9 = fileD.rdbuf();
+    std::cout.rdbuf(stream_buffer_file9);
+    std::cout<<tmpstr;
+    std::cout.rdbuf(stream_buffer_cout9);
+    fileD.close(); // 关闭文件
 
 /*
     std::string tmpProofS = "\"";
@@ -435,5 +457,4 @@ int main(){
 
     return 0;
 
- } 
-   
+ }
